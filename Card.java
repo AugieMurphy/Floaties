@@ -1,16 +1,13 @@
 public class card implements Comparable{
 
     //Instance Vars
-    private int rank; //We can change back to int
+    private int rank;
     private String suit;
-    private Boolean faceCard; //True if it's a face card
 
     // overloaded constructor
     public Card( Object newRank, String newSuit ){
 	suit = newSuit;
-	if( rank is-a-String ){
-	    rank = faceValue( );
-	}
+        rank = newRank;
     }
 
     // accesses suit
@@ -26,16 +23,16 @@ public class card implements Comparable{
     // assignes int value to face card
     public int faceValue( String face ){
 	if( face.equals( "king" ) ){
-	    rank = 13;
+	    rank = 12;
 	}
 	if( face.equals( "queen" )){
-	    rank = 14;
+	    rank = 11;
 	}
 	if( face.equals( "ace" ) ){
 	    rank = 13;
 	}
 	if( face.equals( "jack" )){
-	    rank = 11;
+	    rank = 10;
 	}
     }
 
