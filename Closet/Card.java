@@ -5,7 +5,7 @@ public class card implements Comparable{
     private String suit;
 
     // overloaded constructor
-    public Card( Object newRank, String newSuit ){
+    public Card( int newRank, String newSuit ){
 	suit = newSuit;
         rank = newRank;
     }
@@ -16,23 +16,23 @@ public class card implements Comparable{
     }
 
     // accesses rank
-    public Object getRank(){
+    public int getRank(){
 	return rank;
     }
 
-    // assignes int value to face card
-    public int faceValue( String face ){
+    // assignes int value to face card, seems useful but can be deleted
+    public int faceValue( String face ){ //i'm attatched to the name :)
 	if( face.equals( "king" ) ){
-	    rank = 12;
-	}
-	if( face.equals( "queen" )){
-	    rank = 11;
-	}
-	if( face.equals( "ace" ) ){
 	    rank = 13;
 	}
+	if( face.equals( "queen" )){
+	    rank = 12;
+	}
+	if( face.equals( "ace" ) ){
+	    rank = 1;
+	}
 	if( face.equals( "jack" )){
-	    rank = 10;
+	    rank = 11;
 	}
     }
 
