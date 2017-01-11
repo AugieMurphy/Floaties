@@ -1,0 +1,34 @@
+PLAN
+
+General Note: If someone has extra time to work on the project and go ahead with the plan, they should notify the rest of the group and commit theit changes to as a new file with a message that the file is “a new verision of <class> awaiting review”
+=======================================================================
+School Week of 11/9 - 11/13
+      1.skeletons of each class:
+        **pre and post conditions  + any additional comments
+        ** main methods (PRIORITYYYY) - how we should test functionality before we have a     
+            complete product. 
+
+      2. Get a devlog going  which we should push to the repo? who made what modifications 
+          when 
+    END GOAL  - modify our Notes as needed (we should make it as organized as possible) to          
+    account for any problems we might have encountered during the creation of the skeletons i.e.  
+     a design flaw 
+========================================================================
+Weekend of  11/14-11/15
+      1.OrderedCards - wrapper of array list shouldn’t take long
+      2. Card class 
+      3. Deck Class
+      4. Hand Class 
+     END GOAL - A working Card, Deck, and Hand class.
+========================================================================
+Week of 11/16-11/20
+      1. Player class
+
+========================================================================
+Weekend of 11/21-11/22
+      1. Human extends Player 
+      2. GOFISH! Driver 
+      3. Making cards display nicely in the terminal. 
+          **In all previous steps, Card Classes and Hand Classes did not fancily display cards but just did, for example, 1CLUB JDIA or something 
+          **This would also involve figuring out how playing with more than one person would affect how things are displayed in the terminal
+      4. AI extends Player???? If time allows 
