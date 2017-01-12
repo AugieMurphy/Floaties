@@ -6,20 +6,27 @@ public class OrderedCards{ // wrapper class for class Hand
 	// insert implentation here
     }
     
-    public int search(Card c){
+    
+    public boolean search(Card c){
 	_hand.search(c);
     }
     
     public int remove(Card num){
-	_hand.remove();
+	_hand.remove(num);
     }
-
+    
+    // precon: _hand is a instance of class hand with instance var ArrayList<Card>, which is sorted
+    // postcon: Card c is added to the Array in the proper position to maintain the sort
     public boolean addBinary(Card c,int numCards){
 	// insert implentation here
     }
     
     public void swap(Player n, Card c){
 	_hand.swap(Player n, Card c);
+    }
+
+    public String showHand(){
+	_hand.showHand();
     }
     public static void main( String[] args ){
     }
