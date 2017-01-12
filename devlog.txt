@@ -7,21 +7,6 @@ pd 3
 GO FISH!
 
 
-Suggested usage: 
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
@@ -40,7 +25,9 @@ wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
+-Changed functionality of the driver file; it now uses an ArrayList of Players to keep track of turns. 
+-Changed the concept for OrderedCards so that it now acts as a wrapper class for Hand.
+
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,7 +62,7 @@ Sasha :: Started google doc Notes to work off of Augie's initial design. Created
 2017-01-10
 --------------------------------------------------------------
 Augie :: <Thing member did.>
-Gabi  :: <Thing member did.>
+Gabi  :: Created a first draft of a flow chart representing the GoFish driver file. Recreated a revised version in draw.io. 
 Sasha :: Created first draft of todo.txt (plan of attack), which was later edited by group. Collaberated on the flow chart of the driver 
 ==============================================================
 
@@ -84,4 +71,11 @@ Sasha :: Created first draft of todo.txt (plan of attack), which was later edite
 Augie :: Worked together with Gabi at the Dojo to write a skeleton for the Hand class.
 Gabi  :: Worked with Augie at the Dojo to write a skeleton for the Hand class. Then, worked solo to write a skeleton for the Player class.
 Sasha :: Made a modified flow chart of the driver based on what we discussed in class. Major changes from old flow chart - Driver no longer has thisPlayer, lasPlayer instance vars and no longer has nextPlayer. Modified flow chart has Player[] _player as an instance vars, which allows for Players to take turns during the game. 
+==============================================================
+
+2017-01-12
+--------------------------------------------------------------
+Augie :: Created and worked on a skeleton for the driver file.
+Gabi  :: Created a skeleton for the Human class, and changed functionality of the skeleton for class Hand to have a wrapper class, OrderedCards.
+Sasha :: <Thing member did.>
 ==============================================================
