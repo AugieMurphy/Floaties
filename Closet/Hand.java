@@ -1,7 +1,7 @@
 public class Hand{
 
     //instance vars
-	private OrderedCards _hand;
+    private ArrayList<Card> _hand;
 
     //methods
     public Hand(){ //
