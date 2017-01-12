@@ -1,0 +1,87 @@
+Floaties
+Augie Murphy
+Gabi Newman
+Sasha Fomina
+pd 3
+---------------------
+GO FISH!
+
+
+Suggested usage: 
+* Replace all fields, angle brackets included, with specified info.
+  eg, pd <pd#> --> pd 3
+* Delete these instructions once all teammates understand usage.
+
+devlog--
+Use keyboard shortcut to jump to end,
+ replicate entry template,
+ modify appropriately.
+
+zone of reflection--
+Flesh out each category whenever necessary, appropriate.
+ Need not be fully filled in until end of project,
+ but best done as you go along.
+
+
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+OBSTACLES OVERCOME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow we so BOSS bc...
+
+UNRESOLVED ISSUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+blah blah pesky bug...
+maybe some of these will move into the Obs.Ovrcm section...
+
+COOL STUFF LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow! oo!...
+
+MID-DEVELOPMENT DESIGN CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+we changed ___ to ___ bc...
+
+LESSONS LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tales of wisdom gained...
+||||||||||||||||||||||||||||||||||||||||||
+
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+
+2017-01-04
+--------------------------------------------------------------
+Augie :: <Thing member did.>
+Gabi  :: <Thing member did.>
+Sasha :: Discussed plan for design of project including what classes will be required.
+==============================================================
+
+2017-01-05
+--------------------------------------------------------------
+Augie :: <Thing member did.>
+Gabi  :: <Thing member did.>
+Sasha :: Started google doc Notes to work off of Augie's initial design. Created design for Card class to include instances vars int _rank and int _suit with serveral final variables - SPADES,HEARTS,DIAMONDS,CLUBS, ACE, JACK, QUEEN, KING. Collaborated and contributed ideas to the Notes doc where we mapped out the other classes -  Hand, OrderedCards,Player,Human,and AI
+==============================================================
+
+2017-01-10
+--------------------------------------------------------------
+Augie :: <Thing member did.>
+Gabi  :: <Thing member did.>
+Sasha :: Created first draft of todo.txt (plan of attack), which was later edited by group. Collaberated on the flow chart of the driver 
+==============================================================
+
+2017-01-11
+--------------------------------------------------------------
+Augie :: <Thing member did.>
+Gabi  :: <Thing member did.>
+Sasha :: Made a modified flow chart of the driver based on what we discussed in class. Major changes from old flow chart - Driver no longer has thisPlayer, lasPlayer instance vars and no longer has nextPlayer. Modified flow chart has Player[] _player as an instance vars, which allows for Players to take turns during the game. 
+==============================================================
