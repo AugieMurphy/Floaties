@@ -8,7 +8,7 @@ public class GoFish{
     
     public String _cycleMemory;
 
-    public turn( Player who ){
+    public void turn( Player who ){
 
 	System.out.println( CycleMemory );
 	cycleMemory += "\nOn " + who.getName + "'s turn they...";
@@ -20,11 +20,11 @@ public class GoFish{
 	    
 	    System.out.println( "What card do you want to fish for?" );
 	    try{ int x = readInt(); }
-	    catch{ int x = Card.faceValue( readInt() ); }
+	    catch( Exception e ){ int x = Card.faceValue( readInt() ); }
 	    
 	    System.out.println( "Who do you want to ask?" );
-	    try( Player y = new Player( readLine() ) ){ }
-	    catch{ Player y = Card.faceValue( readInt() ); }
+	    try{ Player y = new Player( readLine() ) }
+	    catch( Exception e ){ Player y = Card.faceValue( readInt() ); }
 	    
 	    System.out.println( "Asking " + y.getName() + "for a " + x + "...");
 	    
