@@ -16,8 +16,9 @@ public class Hand{
 	}
     }
 
-    public void addBinary(Card c){
+    public boolean add(Card c){
 	_hand.addBinary(c);
+	return true;
     }
 
     /*

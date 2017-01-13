@@ -15,7 +15,7 @@ public class Player {
     }
 
     public boolean addToHand(Card c){
-	_hand.addBinary(c);
+	_hand.add(c);
 	return true;
     }
 
