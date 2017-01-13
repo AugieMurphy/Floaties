@@ -107,6 +107,28 @@ public class GoFish{
 	    }
 	}
     }
+ 
+    // precon: the player taking the current turn is human.... sort out AI turns later!!
+    public void takeTurn(){
+	// handle intial display
+	Human currentPlayer = (Human) _players[_turnCount % _numPlayers];
+	System.out.println (currentPlayer.getName() + "'s cards:");
+	System.out.println(currentPlayer.showHand()); 
+
+	// now handle asking
+	System.out.println("Who would you like to ask for card?");
+	int playerNum = 0;
+	/*	for (int i = 0; i < _players.length; i++){
+	    if ((Human) _players[i].equals(currentPlayer)){
+		playerNum ++;
+	    }
+	    else {
+		System.out.println(" \n" + playerNum + ": " + ( _players[i].getName()));
+	    }
+		
+	    }*/
+
+    }
     public static void main( String[] args ){	
 	try {
 	    System.out.println("READY TO PLAY GOFISH!?!?!?!!");
@@ -138,8 +160,8 @@ public class GoFish{
 		    Deck deck1 = new Deck();
 		    game1.dealTheCards(deck1);
 		    Player[] players = game1.getPlayers();
-		    System.out.println (((Human)players[0]).getName() + "'s cards:");
-		    System.out.println(players[0].showHand());
+		    game1.takeTurn();
+		  
 		}
 	    }
 	
