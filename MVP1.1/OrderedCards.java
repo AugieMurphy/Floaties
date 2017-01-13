@@ -39,44 +39,40 @@ public class OrderedCards{ // wrapper class for class Hand
 
     }
 
-    public void addBinary(Card newVal) {
-	if (_data.size() == 0) {
-	    _data.add(newVal);
-	    return;
-	}
-	int low = 0;
-	int high = _data.size()-1;
-	int midPt =0;
-	while (high >= low) {
-	    midPt = (high+low)/2;
-	    if (newVal.compareTo(_data.get(midPt)) == 0) {
-		_data.add(midPt,newVal);
-		return;
-	    }
-	    else if(newVal.compareTo(_data.get(midPt)) < 0) {
-		high = midPt-1;
-	    }
-	    else {
-		low = midPt+1;
-	    }   
-	}
-	_data.add(midPt, newVal);
-	
+   public void addBinary(Card newCard){
+	_data.add(binarySearch(newCard, _data.size(), 0), newCard);
     }
 
+    public int binarySearch(Card newCard, int high, int low){
+	if (high == low){
+	    return high; }
+	else {
+	    int checkPos = (high + low) / 2;
+	    if ((_data.get(checkPos)).compareTo(newCard) > 0){
+		return 	binarySearch(newCard, checkPos, low);
+	
+	    }
+	    else if (_data.get(checkPos).compareTo(newCard) < 0){
+	       	return binarySearch(newCard, high, checkPos + 1);
+	    }
+		else { return checkPos; }
+	    }
+
+    
+    }
    
     
     // main method solely for testing purposes
     public static void main( String[] args ) {
 
-	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	/* =====================================
 	OrderedCards Franz = new OrderedCards();
 
 	System.out.println("\nValues to add via addBinary() calls:");
 
 	// testing binary  search
-	for( int i = 0; i < 4; i++ ) {
-	    int valToAdd = (int)( 50 * Math.random() );
+	for( int i = 0; i < 10; i++ ) {
+	    Card valToAdd = new Card((int) (13 * Math.random() + 1), (int)( 4 * Math.random()) );
 	    System.out.println( valToAdd );
 	    Franz.addBinary( valToAdd );
 	}
@@ -85,8 +81,8 @@ public class OrderedCards{ // wrapper class for class Hand
 	System.out.println( Franz );
 	System.out.println();
 
-	
-	   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	====================================*/
+
     }
 
 }

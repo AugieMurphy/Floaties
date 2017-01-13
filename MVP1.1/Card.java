@@ -25,7 +25,7 @@ public class Card implements Comparable{
     // overloaded constructor
     public Card( int newRank, int newSuit ){
 	_suit = newSuit;
-        _rank = newRank;
+        _rank = newRank; 
     }
 
     //Accessors ===============================

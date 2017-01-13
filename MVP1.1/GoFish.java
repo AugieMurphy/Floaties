@@ -91,7 +91,7 @@ public class GoFish{
 	    //System.out.println("How many players? Can be from 2 to 5 inclusive.");
 	    retStr += "\nHow many players? Can be from 2 to 5 inclusive.";
 	    int numPlayerz = Keyboard.readInt();
-	    if (numPlayerz > 5 || numPlayerz < 3){
+	    if (numPlayerz > 5 || numPlayerz < 2){
 		throw new IllegalArgumentException ("invalid num players");
 	    }
 	    else {
@@ -124,7 +124,7 @@ public class GoFish{
 	    else {
 		System.out.println("How many players? Can be from 2 to 5 inclusive.");
 		int numPlayerz = Keyboard.readInt();
-		if (numPlayerz > 5 || numPlayerz < 3){
+		if (numPlayerz > 5 || numPlayerz < 2){
 		    throw new IllegalArgumentException ("invalid num players");
 		}
 		else {
