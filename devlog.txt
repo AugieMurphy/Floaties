@@ -25,7 +25,7 @@ wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--Changed functionality of the driver file; it now uses an ArrayList of Players to keep track of turns. 
+-Changed functionality of the driver file; it now uses an ArrayList of Players to keep track of turns (the turns are the indexes ). 
 -Changed the concept for OrderedCards so that it now acts as a wrapper class for Hand.
 
 
@@ -47,35 +47,46 @@ tales of wisdom gained...
 
 2017-01-04
 --------------------------------------------------------------
-Augie :: <Thing member did.>
+Augie :: Created shared folder floaties (google docs), git repo, and proposal file (first ideas about classes, methods, challenges, and possible solutions— renamed notes on 10th when combined with all our thinking and project outlining)
 Gabi  :: <Thing member did.>
 Sasha :: Discussed plan for design of project including what classes will be required.
 ==============================================================
 
 2017-01-05
 --------------------------------------------------------------
-Augie :: <Thing member did.>
+Augie :: Worked on the new proposal doc to explain what our game’s capabilities were (rules, challenges, and discussed features). Collaborated to discussion on inheritance and notes. Brought up issue of how to keep track of who’s turn it is.
 Gabi  :: <Thing member did.>
-Sasha :: Started google doc Notes to work off of Augie's initial design. Created design for Card class to include instances vars int _rank and int _suit with serveral final variables - SPADES,HEARTS,DIAMONDS,CLUBS, ACE, JACK, QUEEN, KING. Collaborated and contributed ideas to the Notes doc where we mapped out the other classes -  Hand, OrderedCards,Player,Human,and AI
+Sasha :: Started google doc Notes to work off of Augie's initial design. Filled out survey Created design for Card class to include rank and suit with several final variables - SPADES,HEARTS,DIAMONDS,CLUBS, ACE, JACK, QUEEN, KING. Collaborated and contributed ideas to the Notes doc where we mapped out the other classes -  Hand, OrderedCards,Player,Human,and AI
 ==============================================================
+
+2017-01-09
+--------------------------------------------------------------
+Augie:: uploaded pdf version of proposal to gdocs. Moved the notes at the bottom of proposal to Notes (first doc ever!!!). Created and completed UML in gdocs shared folder. Uploaded pdf version to gdocs. Quickly pushed skeletons with method signatures and accessor, mutator, and small method implementations for deck, card, OrderedCards, etc… (really simple using collaborative notes from proposal thanks to team outlining) Proposed making cards comparable!!!
+Sasha and Augie:: gm’ed about contradictions in notes. Commented and edited notes. 
+Sasha:: Added new methods and descriptions (remove card returns how many of that rank there are). Contributed to classes (new methods, vars, and descriptive comments) and took out excess code. Added GREAT ideas to Card and Hand.
+==============================================================
+
 
 2017-01-10
 --------------------------------------------------------------
-Augie :: <Thing member did.>
-Gabi  :: Created a first draft of a flow chart representing the GoFish driver file. Recreated a revised version in draw.io. 
-Sasha :: Created first draft of todo.txt (plan of attack), which was later edited by group. Collaberated on the flow chart of the driver 
+Augie :: Created docs for todo, DriverFlo, and Announcements (group message board). Drew a flowchart on paper and put this into the doc in the wrong directory! I amended this when I got home. 
+Sasha and Augie :: Referencing the other floChart(down), the UML, and Notes, Sasha identified surviving complications.
+Gabi  :: Created a first draft of a flow chart representing the GoFish driver file.
+Sasha :: Created first draft of todo.txt (plan of attack), which was later edited by group. Collaborated on the flow chart of the driver.
 ==============================================================
 
 2017-01-11
 --------------------------------------------------------------
-Augie :: Worked together with Gabi at the Dojo to write a skeleton for the Hand class.
-Gabi  :: Worked with Augie at the Dojo to write a skeleton for the Hand class. Then, worked solo to write a skeleton for the Player class.
-Sasha :: Made a modified flow chart of the driver based on what we discussed in class. Major changes from old flow chart - Driver no longer has thisPlayer, lasPlayer instance vars and no longer has nextPlayer. Modified flow chart has Player[] _player as an instance vars, which allows for Players to take turns during the game. 
+Augie and Gabi:: Skeletons for the Hand and Player classes in dojo with some methods implemented. 
+Gabi:: Skeleton for the Player class (method signatures from UML & comments), modified Hand skeleton to incorporate wrapper class OrderedCards.
+Sasha :: Made a modified, cleaner flow chart of the driver based on what we discussed in class. Major changes as discussed in class- Driver no longer has thisPlayer, nextPlayer instance vars and no longer has nextPlayer(). Modified flow chart has Player[] _player as an instance vars, which allows for Players to take turns during the game. 
 ==============================================================
 
 2017-01-12
 --------------------------------------------------------------
-Augie :: Created and worked on a skeleton for the driver file.
-Gabi  :: Created a skeleton for the Human class, and changed functionality of the skeleton for class Hand to have a wrapper class, OrderedCards.
-Sasha :: <Thing member did.>
+Augie :: Created and worked on a skeleton for the driver file (based of flowchart). First working version of Deck and Hand.
+Gabi  :: Created a skeleton for the Human class.
+Sasha :: Finished implementing methods in Hand.java. Moved faceValue() to Player.
+All: MVP!!!
 ==============================================================
+
