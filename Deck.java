@@ -17,6 +17,14 @@ public class Deck{
 	}
     }
 
+    public void shuffle(){
+	for (int x = 0; x < _deck.size() ; x ++){
+	    int randI1 = (int) (Math.random() *51);
+	    int randI2 = (int) (Math.random() *51);
+	    _deck.set(randI1, _deck.set(randI2,_deck.get(randI1)));
+	}
+    }
+
     public String toString(){
 	String retStr = "";
 	for (int x =0; x < _deck.size() ; x++){
@@ -27,9 +35,18 @@ public class Deck{
 	}
 	return retStr;
     }
+
+   
+    public int getSize(){
+	return _deck.size();
+    }
     
     public static void main( String[] args ){
 	Deck deck1 = new Deck();	
+	//	System.out.println(deck1);
+	//	System.out.println(deck1.getSize());
+	deck1.shuffle();
 	System.out.println(deck1);
+	
     }
 }
