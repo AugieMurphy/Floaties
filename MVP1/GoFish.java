@@ -49,49 +49,57 @@ public class GoFish{
 	System.out.println( "\n\n\nHi! What's your name?" );
 	System.out.println( "(Type Here): " );
 
-	try( String _name = inReadLine() ){ Player _name = new Human( readLine() ); }
+	try( String _name = inReadLine() ){ Player ba = new Human( readLine() ); }
 	catch( Exception e ){ }
 
 	System.out.println( "\nHello, " + _name + ", let's get fishing!!!");
 	System.out.println( "Single or multiplayer?" );
 
 	int x = 0;
-	System.out.println( "\t1) Single Player" );
+	//System.out.println( "\t1) Single Player" );
 	System.out.println( "\t2) Multiplayer" );
 	System.out.println( "\t3) Umm... what???" );
 	
-	try( x = readLine() ){};
+	try( x = readLine() ){ if( x = 3 )
+		System.out.println( "Read the rulebook!!!" );
+	}
+	
 	catch{};
-	System.out.println( "\nHow many players do you want?" );
+	System.out.println( "\nHow many players do you want? (haha you don't get to play alone, find a buddy until AI is invented)" );
 	System.out.println( "(" + _name + "):" );
-
+	
 	numPlayers = readInt();
 	
 	int c = 2;
-	while( c > numPlayers + 1 ){
-	    System.out.println( "Player " + c + "'s name?"  );
-	}
 	
-        //may need to name randomly and use lots of getName() 's
-	_name = readLine();
-	try( Player _name = new Player( _name ) ){ _players[c] = _name }
-	catch{
-	    Player idk = new Player ( Mary );
-	    _players[c] = new Player( _name );
+	while( c < numPlayers + 1 ){
+	    System.out.println( "Player " + c + "'s name?"  );
+	    //may need to name randomly and use lots of getName() 's
+	    String _name = readLine();
+	    
+	    try{
+		Player yippeee = new Human( _name );
+		_players[c] = yippeee;
+	    }
+	    
+	    catch{
+		Player la = new Human( Mary );
+		_players[c] = la;
+	    }
 	}
-
-        for( int x = 0; _numBooks < 13; x++ ){
+	    
+	for( int x = 0; _numBooks < 13; x++ ){
 	    turn( _players.get( x % numPlayers ) );
 	}
-
+	
 	System.out.println( "Great Game!!!" );
-
+	
 	int winner = 0;
         for( int x = 1; _numBooks < 13; x++ ){
 	    if ( ( _players.get( winner ) ).getBooks() ).compareTo( _players.get( x ) ).getBooks() < 0){ winner = x };
-	}
-	
-    System.out.println( _players.get( winner ) );
-
     }
+    
+    System.out.println( _players.get( winner ) );
+    
 }
+

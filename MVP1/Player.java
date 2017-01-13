@@ -2,23 +2,34 @@ public class Player {
     
     // instance vars
     private Hand _hand;
-    private int turnNum;
     private int _numBooks;
 
     public Player(){ // constructor
-	// implementation here
+	_hand = new Hand();
+	_numBooks = 0;
     }
 
     public int getNumBooks(){
 	return _numBooks;
     }
 
-    public int getTurnNum(){
-	return turnNum;
+    public boolean ask(Player n, card c){
+        return n.search( c );
     }
 
-    public boolean ask(int rank, Player n){
-	// insert implementation here -- calls Hand methods search, swap, etc.
+    public int search(Card c){
+	for( int x = 0; x < _hand.size(); x++ ){
+	    if( _hand.get( x ).compareTo( c ) == 0 ){ count++ }
+	}
+	return count;
+    }
+
+    public boolean makeBooks(){
+	for( int x = 0; x < _hand.size(); x++ ){
+	    if( search( _hand.get(x) ) > 4 ){
+		numBooks++;
+      
+	}
     }
 
     

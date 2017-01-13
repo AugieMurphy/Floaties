@@ -16,11 +16,18 @@ public class Hand{
     }
 
     public int remove( Card num ){
-	// insert implenetation here
+	int count = 0;
+	for( int x = 0; x < _hand.size(); x++ ){
+	    if( _hand.get( x ).compareTo( c ) == 0 ){ count++; _hand.remove( x ); }
+	}
+	return count;
     }
 
     public boolean search( Card c ){
-	// insert implentation here
+	for( int x = 0; x < _hand.size(); x++ ){
+	    if( _hand.get( x ).compareTo( c ) == 0 ){ return true; }
+	}
+	return false;
     }
 
     public void swap( Player n, Card c ){ //called by player recieving card
@@ -28,7 +35,7 @@ public class Hand{
     }
 
     public String showHand(){
-	// insert implentation here 
+	_hand.toString();
 	
     }
     
