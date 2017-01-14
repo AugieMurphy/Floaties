@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class OrderedCards{ // wrapper class for class Hand
+public class OrderedCards{ // wrapper class of ArrayList
 
     private ArrayList<Card> _data;
 
