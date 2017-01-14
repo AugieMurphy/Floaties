@@ -1,4 +1,4 @@
-Floaties
+﻿Floaties
 Augie Murphy
 Gabi Newman
 Sasha Fomina
@@ -63,7 +63,7 @@ Sasha :: Started google doc Notes to work off of Augie's initial design. Filled 
 --------------------------------------------------------------
 Augie:: uploaded pdf version of proposal to gdocs. Moved the notes at the bottom of proposal to Notes (first doc ever!!!). Created and completed UML in gdocs shared folder. Uploaded pdf version to gdocs. Quickly pushed skeletons with method signatures and accessor, mutator, and small method implementations for deck, card, OrderedCards, etc… (really simple using collaborative notes from proposal thanks to team outlining) Proposed making cards comparable!!!
 Sasha and Augie:: gm’ed about contradictions in notes. Commented and edited notes. 
-Sasha:: Added new methods and descriptions (remove card returns how many of that rank there are). Contributed to classes (new methods, vars, and descriptive comments) and took out excess code. Added GREAT ideas to Card and Hand.
+Sasha:: Added new methods and descriptions (remove card returns how many of that rank there are). Contributed to classes (new methods, vars, and descriptive comments) and took out excess code. Added ideas to Card and Hand.
 ==============================================================
 
 
@@ -86,7 +86,7 @@ Sasha :: Made a modified, cleaner flow chart of the driver based on what we disc
 --------------------------------------------------------------
 Augie :: Created and worked on a skeleton for the driver file (based of flowchart). First working version of Deck and Hand.
 Gabi  :: Created a skeleton for the Human class.
-Sasha :: Finished implementing methods in Hand.java. Moved faceValue() to Player.
+Sasha :: In Card, changed _suit to an int instance var referencing final var values for all the suits and the face cards, added a compareTo(), overwrote toString() to print a Card in the format rank of suit. In Deck, added an int _cardDealth instance var, edited default constructor to create a deck fo 52 cards, a shuffle(), overwrote toString() (see unresolved issues), added void deal(Player[]). Wrote an OrderedCards class, a wrapper class of ArrayList that contains an ArrayList<Card> instance var and an addBinary(Card) and addLinear(Card) to maintain order. In Hand, added a type OrderedCards instance var, an overloaded constructor that takes Card[] as a parameter, an add(Card) that calls addBinary() of OrderedCards, overwrote toString(). In Player, added default constructor that gives the player an empty hand, an addToHand(Card) that calls add(Card) of Hand, added showHand(). In GoFish, added Player[] type instance var, added default and overloaded constructor, added dealTheCards(deck), made a procedure in main method that would setup a game of GoFish with only human players and deal the cards to each player. 
 All: MVP!!!
 ==============================================================
 
