@@ -3,12 +3,13 @@ public class Hand{
     //instance vars
     private OrderedCards _hand;
 
-    //methods
+    //default constructor
     public Hand(){
 	_hand = new OrderedCards();
 
     }
 
+    //overloaded constructor
     public Hand(Card[] cards){
 	this();
 	for (Card c: cards){
@@ -22,13 +23,6 @@ public class Hand{
     }
 
     /*
-    public boolean add( Card c, int numCards, int index){
-	for (int i = 0; i < numCards; i++){
-	    _hand.addAtIndex(index, c);
-	}
-	return true;
-    }
-
  
     public int remove( Card num ){
 	int count = 0;
@@ -50,6 +44,7 @@ public class Hand{
     }
     */
 
+    //overwritten toString()
     public String toString(){
 	return _hand.toString();
 	
