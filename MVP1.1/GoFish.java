@@ -2,12 +2,13 @@ import cs1.Keyboard;
 
 public class GoFish{
 
-    public int _numPlayers; // number of players in game (AI + HUMAN)
-    public Player[] _players; // turn table, player is removed when they're out
+    public int _numPlayers; // number of  players in game (HUMAN + AI)
+    public Player[] _players; //an array of Human and AI players
     
     public int _turnCount; //how many turns have happened
-    public int _totalBooks;
+    public int _totalBooks; //player1.numBooks + player2.numBooks + ... + playerN.numBooks
 
+    //default constructor 
     public GoFish(){
 	_numPlayers = 1;
 	_players = new Player[1];
@@ -16,6 +17,7 @@ public class GoFish{
 	
     }
 
+    //overloaded constructor
     public GoFish(int numPlayers){
 	_numPlayers = numPlayers;
 	_players = new Player[numPlayers];
@@ -23,17 +25,23 @@ public class GoFish{
 	_totalBooks = 0;
     }
 
-    public void setPlayers(int i , Player p){
-	_players[i] =p; 
-    }
-
     public void dealTheCards(Deck d){
 	d.deal(_players);
     }
 
+    //MUTATORS =================================================
+    public void setPlayers(int i , Player p){
+	_players[i] = p; 
+    }
+    //==========================================================
+
+
+    //ACCESSORS================================================
     public Player[] getPlayers (){
 	return _players;
     }
+    //========================================================
+    
     /*
     public String _cycleMemory;
 
@@ -165,14 +173,15 @@ public class GoFish{
 		}
 	    }
 	
-	}
+	}// end try block
 	    
 	catch (Exception exception) {
 	    System.out.println("Please read instructions carefully!");
 	}
 	
-    }
+    }//end main
 
+}//end class GoFish
 
 	/*
 	System.out.println( "\n\n\nHi! What's your name?" );
@@ -231,5 +240,5 @@ public class GoFish{
     System.out.println( _players.get( winner ) ); 
 	*/
 
-}
+
 
