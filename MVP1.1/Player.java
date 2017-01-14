@@ -3,8 +3,9 @@ public class Player {
     // instance vars
     protected Hand _hand;
     protected int _numBooks;
-
-    public Player(){ // constructor
+    
+    // default constructor
+    public Player(){ 
 	_hand = new Hand();
 	_numBooks = 0;
     }
@@ -19,13 +20,16 @@ public class Player {
 	return true;
     }
 
-    public int getNumBooks(){
-	return _numBooks;
-    }
-
     public String showHand() {
 	return _hand.toString();
     }
+
+    //ACCESSORS=========================================
+    public int getNumBooks(){
+	return _numBooks;
+    }
+    //=================================================
+
 
     /*
     public boolean ask(Player n, card c){
