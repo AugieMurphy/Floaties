@@ -25,21 +25,11 @@ public class Deck {
 	}
     }
 
-    public String toString(){
-	String retStr = "";
-	for (int x =0; x < _deck.size() ; x++){
-	    if (x != 0 && x%4 == 0){
-		retStr+="\n";
-	    }
-	    retStr += _deck.get(x) + "     ";
-	}
-	return retStr;
-    }
 
      public void deal( Player[] players ){
 	shuffle();
 	int numPlayers = players.length;
-	if (numPlayers <= 3){
+	if (numPlayers <= 3){ //3 players or less = 7 cards each
 	    int counter = 0;
 	    while(counter <(numPlayers * 7)){
 		for (Player p : players){
@@ -49,7 +39,7 @@ public class Deck {
 	    }
 	    _cardsDealt -= (7*numPlayers); 
 	}
-	else {
+	else { //4-5 inclusive players = 5 cards each 
 	    int counter = 0;
 	    while(counter <(numPlayers * 5)){
 		for (Player p : players){
@@ -60,10 +50,26 @@ public class Deck {
 	    _cardsDealt -= (7*numPlayers); 
 	}
      }
-   
+
+    //ACCESSORS ============================================
     public int getSize(){
 	return _deck.size();
     }
+    //====================================================
+
+    
+    //overwritten toString()
+    public String toString(){
+	String retStr = "";
+	for (int x =0; x < _deck.size() ; x++){
+	    if (x != 0 && x%4 == 0){
+		retStr+="\n";
+	    }
+	    retStr += _deck.get(x) + "     ";
+	}
+	return retStr;
+    }
+    
 
     
     public static void main( String[] args ){
