@@ -7,6 +7,7 @@ public class GoFish{
     
     public int _turnCount; //how many turns have happened
     public int _totalBooks; //player1.numBooks + player2.numBooks + ... + playerN.numBooks
+   
 
     //default constructor 
     public GoFish(){

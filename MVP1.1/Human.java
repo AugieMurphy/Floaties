@@ -1,10 +1,8 @@
 public class Human extends Player {
 
-    private String _name;    // instance var
 
     public Human() { // constructor
 	super();
-	_name = "";
 	
     }
 

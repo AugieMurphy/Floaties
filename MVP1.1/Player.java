@@ -1,8 +1,9 @@
-public class Player {
+abstract public class Player {
     
     // instance vars
     protected Hand _hand;
     protected int _numBooks;
+    protected String _name;    // instance var
     
     // default constructor
     public Player(){ 
@@ -23,6 +24,10 @@ public class Player {
     public String showHand() {
 	return _hand.toString();
     }
+
+    abstract public String getName();
+
+
 
     //ACCESSORS=========================================
     public int getNumBooks(){
@@ -53,12 +58,12 @@ public class Player {
     */
     
     public static void main(String[] args){
-	Hand hand1 = new Hand();
+	/*	Hand hand1 = new Hand();
 	Player player1 = new Player(hand1);
 	//	System.out.println(player1.showHand());
 	Card card1 = new Card(Card.JACK, Card.HEARTS);
 	player1.addToHand(card1);
-	System.out.println(player1.showHand());
+	System.out.println(player1.showHand()); */
 	
     }
 
