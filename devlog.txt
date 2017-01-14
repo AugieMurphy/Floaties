@@ -16,8 +16,7 @@ wow we so BOSS bc...
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
+*the Deck displays in an ugly fashion (very super minor problem)
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -90,3 +89,17 @@ Sasha :: In Card, changed _suit to an int instance var referencing final var val
 All: MVP!!!
 ==============================================================
 
+2017-01-13
+--------------------------------------------------------------
+Augie :: 
+Gabi  :: 
+Sasha :: 
+==============================================================
+
+
+2017-01-14
+--------------------------------------------------------------
+Augie :: 
+Gabi  :: 
+Sasha :: Added some comments to all classes. Changed main in GoFish so that everything to setup the game, i.e. multiplayer or single, name of each player, and dealing the cards to each player, is in a method GoFish setup() as it creates and returns a new game. The main method now just calls setUp().
+==============================================================
