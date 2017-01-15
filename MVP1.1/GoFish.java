@@ -44,20 +44,23 @@ public class GoFish{
     //========================================================
     
     public static GoFish setUp(){
+	GoFish game;
+	
 	System.out.println( "READY TO PLAY GOFISH!?!?!?!!");
 	System.out.println( "OF COURSE YOU ARE! YOU WERE BORN READY");
 
-	System.out.println("Type 1 or 2:\n1. Single Player NOT READY YET sad face");
-	System.out.println( "2. Multiplayer");
+	String introMsg = "\nType 1 or 2:\n1. Single Player NOT READY YET sad face\n2. Multiplayer\n";
+	System.out.print(introMsg);
 	
 	int option = Keyboard.readInt();
-	
-	if (option > 2 || option < 1){
-	    throw new IllegalArgumentException ("invalid option; can be either 1 or 2");
+	while (option >2 || option <1){
+	    System.out.println("Invalid option. Try again:\n" +  introMsg);
+	    option = Keyboard.readInt();
 	}
 	
-	else if (option == 1) {
-	    System.out.println("I'm sorry this part of the game isnt ready yet"); 
+	if (option == 1) {
+	    System.out.println("I'm sorry this part of the game isnt ready yet");
+	    game = new GoFish();
 	}
 	
 	else {
@@ -65,24 +68,22 @@ public class GoFish{
 	    
 	    int numPlayerz = Keyboard.readInt();
 	    
-	    if (numPlayerz > 5 || numPlayerz < 2){
-		throw new IllegalArgumentException ("invalid num players");
+	    while (numPlayerz > 5 || numPlayerz < 2){
+		System.out.print("Invalid num players. Must be from 2 to 5 inclusive. Try again:");
+		numPlayerz = Keyboard.readInt();
 	    }
 	    
-	    else {
-		GoFish game = new GoFish(numPlayerz);
-		for (int x =0; x < numPlayerz; x++){
-		    System.out.println("Type name of player" + x);
-		    String name = Keyboard.readWord();
-		    game.setPlayers(x , new Human(name));
-		}
-		System.out.println("Alright, let's deal the cards!");
-		Deck deck1 = new Deck();
-		game.dealTheCards(deck1);
-		return game;
+	    game = new GoFish(numPlayerz);
+	    for (int x =0; x < numPlayerz; x++){
+		System.out.println("Type name of player" + x);
+		String name = Keyboard.readWord();
+		game.setPlayers(x , new Human(name));
 	    }
+	    System.out.println("Alright, let's deal the cards!");
+	    Deck deck1 = new Deck();
+	    game.dealTheCards(deck1);
+	    //return game;   
 	}
-	GoFish game = new GoFish();
 	return game;
 	
     }//end setUp
@@ -97,10 +98,17 @@ public class GoFish{
 
 	// now handle asking
 	System.out.println("\nWho would you like to ask for a card?");
-	for (int i = 0; i < _players.length; i++){
-	    System.out.println("\n" + i + ": " + _players[i].getName());
+	for (int i = 0; i < _numPlayers; i++){
+	    System.out.println( i + ": " + _players[i].getName());
 	}
-    }
+	System.out.println();
+	
+	int indexAskPlayer = Keyboard.readInt();
+	//if (indexAskPlayer > (_numPlayers - 1)){
+	//  throw IllegalArgument
+	//}
+	
+    }//end takeTurn
   
     public static void main(String[] args){
 	try {

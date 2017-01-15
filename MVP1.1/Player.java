@@ -1,4 +1,4 @@
-abstract public class Player {
+public abstract class Player {
     
     // instance vars
     protected Hand _hand;
