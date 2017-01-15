@@ -97,7 +97,6 @@ public class GoFish{
 
 	// now handle asking
 	System.out.println("\nWho would you like to ask for a card?");
-	int playerNum = 0;
 	for (int i = 0; i < _players.length; i++){
 	    System.out.println("\n" + i + ": " + _players[i].getName());
 	}

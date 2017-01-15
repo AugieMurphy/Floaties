@@ -16,7 +16,8 @@ wow we so BOSS bc...
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*the Deck displays in an ugly fashion (very super minor problem)
+-the Deck display is unsatisfactory 
+-Whenever user input throws an exception, the entire game must be restarted. 
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26,6 +27,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -Changed functionality of the driver file; it now uses an ArrayList of Players to keep track of turns (the turns are the indexes ). 
 -Changed the concept for OrderedCards so that it now acts as a wrapper class for Hand.
+-Changed class Player to be abstract, and to contain abstract method getName().
 
 
 LESSONS LEARNED
@@ -92,7 +94,7 @@ All: MVP!!!
 2017-01-13
 --------------------------------------------------------------
 Augie :: 
-Gabi  :: 
+Gabi  :: Fixed OrderedCards method addBinary(), which wasn't sorting cards correctly. Created and began writing method takeTurn() in the driver file, which handles the complete turn of a single user. 
 Sasha :: 
 ==============================================================
 
@@ -100,6 +102,6 @@ Sasha ::
 2017-01-14
 --------------------------------------------------------------
 Augie :: 
-Gabi  :: 
+Gabi  :: Modified class Player to be abstract, and contain abstract method getName(). Continued work on takeTurn() -- it now displays a numbered list of users to ask for cards. Next step is to handle the actual asking.
 Sasha :: Added some comments to all classes. Changed main in GoFish so that everything to setup the game, i.e. multiplayer or single, name of each player, and dealing the cards to each player, is in a method GoFish setup() as it creates and returns a new game. The main method now just calls setUp().
 ==============================================================
