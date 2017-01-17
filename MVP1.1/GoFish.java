@@ -92,7 +92,8 @@ public class GoFish{
     public void takeTurn(){
 	// handle intial display
 	Player currentPlayer =  _players[_turnCount % _numPlayers];
-	System.out.println();
+	int iCurrentPlayer = _turnCount % _numPlayers; 
+	System.out.println("\n================ " + currentPlayer.getName().toUpperCase() + "'S TURN ==========================");
 	System.out.println (currentPlayer.getName() + "'s cards:");
 	System.out.println(currentPlayer.showHand()); 
 
@@ -104,9 +105,17 @@ public class GoFish{
 	System.out.println();
 	
 	int indexAskPlayer = Keyboard.readInt();
-	//if (indexAskPlayer > (_numPlayers - 1)){
-	//  throw IllegalArgument
-	//}
+	while (indexAskPlayer < 0 || indexAskPlayer > (_numPlayers - 1) || indexAskPlayer == iCurrentPlayer){
+	    if (indexAskPlayer == iCurrentPlayer) {
+		System.out.println("That's you! Share the love, ask someone else!");
+		indexAskPlayer = Keyboard.readInt();
+	    }
+	    else {
+		System.out.println("Index out of bounds: please pick an existing player");
+		indexAskPlayer = Keyboard.readInt();
+	    }
+	}
+	
 	
     }//end takeTurn
   
