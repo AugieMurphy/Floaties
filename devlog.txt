@@ -110,8 +110,8 @@ Sasha :: Added some comments to all classes. Changed main in GoFish so that ever
 
 2017-17-17
 --------------------------------------------------------------
-Augie :: Created GoFish directory. Wrote detailed main bodies for all classes and corrected methods that weren't doing what we thought they were. Pushed README.md, reqrote Comparable() so it was functional, worked on displaying cards in the terminal, went through every method and class to ensure there were no naming issues or methods in the wrong classes. Rewrote methods in all(not all methods, just some but went through all classes) classes for clarity and efficiency. It could've been very buggy later without this!!!
-Gabi::
+Augie :: Created GoFish directory. Wrote detailed main bodies for all classes and corrected methods that weren't doing what we thought they were. Pushed README.md, rewrote Comparable() so it was functional, worked on displaying cards in the terminal, went through every method and class to ensure there were no naming issues or methods in the wrong classes. Rewrote methods in all(not all methods, just some but went through all classes) classes for clarity and efficiency. It could've been very buggy later without this!!!
+Gabi:: Continued working on takeTurn().
 Sasha::
 ==============================================================
 
