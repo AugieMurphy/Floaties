@@ -48,21 +48,20 @@ tales of wisdom gained...
 
 2017-01-04
 --------------------------------------------------------------
-Augie :: Created shared folder floaties (google docs), git repo, and proposal file (first ideas about classes, methods, challenges, and possible solutions— renamed notes on 10th when combined with all our thinking and project outlining)
-Gabi  :: <Thing member did.>
-Sasha :: Discussed plan for design of project including what classes will be required.
+Augie :: Created shared folder floaties on google docs, git repo, and pre-proposal file (first ideas about classes, methods, challenges, and possible solutions— renamed notes on 10th when combined with all our thinking and project outlining). This contained possible problems, ideas for classes and methods and variables, and even some ideas about inheritance.
+Augie, Sasha, Gabi :: Group chat --> idea brainstorming
 ==============================================================
 
 2017-01-05
 --------------------------------------------------------------
-Augie :: Worked on the new proposal doc to explain what our game’s capabilities were (rules, challenges, and discussed features). Collaborated to discussion on inheritance and notes. Brought up issue of how to keep track of who’s turn it is.
-Gabi  :: <Thing member did.>
-Sasha :: Started google doc Notes to work off of Augie's initial design. Filled out survey Created design for Card class to include rank and suit with several final variables - SPADES,HEARTS,DIAMONDS,CLUBS, ACE, JACK, QUEEN, KING. Collaborated and contributed ideas to the Notes doc where we mapped out the other classes -  Hand, OrderedCards,Player,Human,and AI
+Augie :: Started the new proposal doc to explain what our game’s capabilities were (rules, challenges, classes, interfaces, etc...). Wrote first class outline & relationships to think about what methods and variables were the same and different. This helped us start to look at inheritance and is-a vs has-a vs implements. Brought up issue of how to keep track of who’s turn it is. Came up with array of players, as well as thisPlayer and nextPlayer(). Most was copy and paste from first doc.
+Gabi  :: Shared a new document for the proposal to turn in.
+Sasha :: Filled out survey. Suggested using final variables in Card class - SPADES,HEARTS,DIAMONDS,CLUBS, ACE, JACK, QUEEN, KING. Contributed ideas to the Notes doc where we mapped out the other classes.
 ==============================================================
 
 2017-01-09
 --------------------------------------------------------------
-Augie:: uploaded pdf version of proposal to gdocs. Moved the notes at the bottom of proposal to Notes (first doc ever!!!). Created and completed UML in gdocs shared folder. Uploaded pdf version to gdocs. Quickly pushed skeletons with method signatures and accessor, mutator, and small method implementations for deck, card, OrderedCards, etc… (really simple using collaborative notes from proposal thanks to team outlining) Proposed making cards comparable!!!
+Augie:: uploaded pdf version of proposal to gdocs. Moved the notes at the bottom of proposal to Notes (from the first doc ever!!!). Created and completed UML in gdocs shared folder. Uploaded pdf version to gdocs. Quickly pushed skeletons with method signatures and accessor, mutators, and small method implementations for deck, card, OrderedCards, etc… (really simple using collaborative notes from proposal thanks to outlining). Proposed making cards comparable and Player abstract!!!
 Sasha and Augie:: gm’ed about contradictions in notes. Commented and edited notes. 
 Sasha:: Added new methods and descriptions (remove card returns how many of that rank there are). Contributed to classes (new methods, vars, and descriptive comments) and took out excess code. Added ideas to Card and Hand.
 ==============================================================
@@ -70,7 +69,7 @@ Sasha:: Added new methods and descriptions (remove card returns how many of that
 
 2017-01-10
 --------------------------------------------------------------
-Augie :: Created docs for todo, DriverFlo, and Announcements (group message board). Drew a flowchart on paper and put this into the doc in the wrong directory! I amended this when I got home. 
+Augie :: Created docs for todo, DriverFlo, and Announcements (group message board). Drew a flowchart on paper and put this into the doc in the wrong directory! I amended this when I got home. Revised plan of attack, put my flowchart into the right folder, and made sure it addressed contradictions in other files. Continued working to finish the turn sequence in the flowchart.
 Sasha and Augie :: Referencing the other floChart(down), the UML, and Notes, Sasha identified surviving complications.
 Gabi  :: Created a first draft of a flow chart representing the GoFish driver file.
 Sasha :: Created first draft of todo.txt (plan of attack), which was later edited by group. Collaborated on the flow chart of the driver.
@@ -78,6 +77,7 @@ Sasha :: Created first draft of todo.txt (plan of attack), which was later edite
 
 2017-01-11
 --------------------------------------------------------------
+Augie:: talked to group, skeleton for driver based on flowchart, edited todo.
 Augie and Gabi:: Skeletons for the Hand and Player classes in dojo with some methods implemented. 
 Gabi:: Skeleton for the Player class (method signatures from UML & comments), modified Hand skeleton to incorporate wrapper class OrderedCards.
 Sasha :: Made a modified, cleaner flow chart of the driver based on what we discussed in class. Major changes as discussed in class- Driver no longer has thisPlayer, nextPlayer instance vars and no longer has nextPlayer(). Modified flow chart has Player[] _player as an instance vars, which allows for Players to take turns during the game. 
@@ -85,9 +85,9 @@ Sasha :: Made a modified, cleaner flow chart of the driver based on what we disc
 
 2017-01-12
 --------------------------------------------------------------
-Augie :: Created and worked on a skeleton for the driver file (based of flowchart). First working version of Deck and Hand.
+Augie :: Created and worked on a skeleton for the driver file (based of flowchart). Created MVP1 w/ buggy driver. Modified deck's shuffle() to accept an Player[] as a parameter, filled in methods for deck, hand, and player.
 Gabi  :: Created a skeleton for the Human class.
-Sasha :: In Card, changed _suit to an int instance var referencing final var values for all the suits and the face cards, added a compareTo(), overwrote toString() to print a Card in the format rank of suit. In Deck, added an int _cardDealth instance var, edited default constructor to create a deck fo 52 cards, a shuffle(), overwrote toString() (see unresolved issues), added void deal(Player[]). Wrote an OrderedCards class, a wrapper class of ArrayList that contains an ArrayList<Card> instance var and an addBinary(Card) and addLinear(Card) to maintain order. In Hand, added a type OrderedCards instance var, an overloaded constructor that takes Card[] as a parameter, an add(Card) that calls addBinary() of OrderedCards, overwrote toString(). In Player, added default constructor that gives the player an empty hand, an addToHand(Card) that calls add(Card) of Hand, added showHand(). In GoFish, added Player[] type instance var, added default and overloaded constructor, added dealTheCards(deck), made a procedure in main method that would setup a game of GoFish with only human players and deal the cards to each player. 
+Sasha :: In Card, changed _suit to an int instance var referencing final var values for all the suits and the face cards, added a compareTo(), overwrote toString() to print rank. In Deck, added an int _cardDealth instance var, edited accordingly and commented out shuffle (see unresolved issues). Wrote an OrderedCards class. Modifies hand to accomodate wrapper class. In GoFish, added Player[] type instance var, added default and overloaded constructor, added dealTheCards(deck), made a procedure in main method that would setup a game of GoFish with only human players and deal the cards to each player. 
 All: MVP!!!
 ==============================================================
 
@@ -105,3 +105,13 @@ Augie ::
 Gabi  :: Modified class Player to be abstract, and contain abstract method getName(). Continued work on takeTurn() -- it now displays a numbered list of users to ask for cards. Next step is to handle the actual asking.
 Sasha :: Added some comments to all classes. Changed main in GoFish so that everything to setup the game, i.e. multiplayer or single, name of each player, and dealing the cards to each player, is in a method GoFish setup() as it creates and returns a new game. The main method now just calls setUp().
 ==============================================================
+
+
+
+2017-17-17
+--------------------------------------------------------------
+Augie :: Created GoFish directory. Wrote detailed main bodies for all classes and corrected methods that weren't doing what we thought they were. Pushed README.md, reqrote Comparable() so it was functional, worked on displaying cards in the terminal, went through every method and class to ensure there were no naming issues or methods in the wrong classes. Rewrote methods in all(not all methods, just some but went through all classes) classes for clarity and efficiency. It could've been very buggy later without this!!!
+Gabi::
+Sasha::
+==============================================================
+
