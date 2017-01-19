@@ -23,8 +23,8 @@ public class Hand{
     }
 
     public Card draw(Deck pool){
-	Card retCard = pool.remove(0);
-	pool.remove(0);
+	Card retCard = pool.draw();
+	add( retCard );
 	return retCard;
     }
 

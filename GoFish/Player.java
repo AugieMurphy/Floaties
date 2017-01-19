@@ -25,10 +25,7 @@ public class Player{
     }
 
     public Card draw(Deck pool){
-	Card retCard = _hand.draw(pool);
-	_hand.draw(pool);
-	_hand.add( retCard );
-	return retCard;
+	return _hand.draw(pool);
     }
     
     
@@ -42,9 +39,7 @@ public class Player{
     }
 
     public Card remove(int r){
-	Card retCard = _hand.remove(r);
-	_hand.remove(r);
-	return retCard;
+	return _hand.remove(r);
     }
 
     public boolean ask(Player p, int r){

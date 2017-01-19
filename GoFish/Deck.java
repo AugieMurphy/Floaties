@@ -24,12 +24,12 @@ public class Deck{
 
     public void deal( Player[] players){
 	for( Player p: players ){
-	    if( players.length <= 3 ){
+	    if( players.length <= 3 && _deck.size() >= 21){
 		for( int x = 0; x < 7; x++ ){
 		    p.add( _deck.remove(0) );
 		}
 	    }
-	    else{
+	    else if( _deck.size() >= players.length * 5 ){
 		for( int x = 0; x < 5; x++ ){
 		    p.add( _deck.remove(0) );
 		}
@@ -37,14 +37,12 @@ public class Deck{
 	}
     }
 
-    public Card remove(int x){
-	Card retCard = _deck.remove(0);
-	_deck.remove(0);
+    public Card draw(){
 	return _deck.remove(0);
     }
 
-    public int cardsLeft(){
-	return _deck.size();
+      public int cardsLeft(){
+    	return _deck.size();
     }
 
     public String toString(){
@@ -64,6 +62,18 @@ public class Deck{
 
 	System.out.println("\nDealing happy to 5 people...");
 	Player[] turner = new Player[5];
+	
+	Player a = new Player("tired");
+	Player b  = new Player("bob");
+        Player c = new Player("lizzy");
+	Player d  = new Player("jackson");
+	Player e  = new Player("sleeepppp");
+	
+	turner[0] = a;
+	turner[1] = b;
+	turner[2] = c;
+	turner[3] = d;
+	turner[4] = e;
 
 	happy.deal( turner );
 
