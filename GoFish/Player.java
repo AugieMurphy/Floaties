@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 public class Player{
     
-    private Hand _hand;
-    private int _numBooks;
-    private String _name;
+    protected Hand _hand;
+    protected int _numBooks;
+    protected String _name;
 
     public Player(String name){
 	_hand = new Hand();
