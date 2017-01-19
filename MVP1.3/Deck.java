@@ -4,7 +4,7 @@ public class Deck {
 
     private ArrayList<Card> _deck;
     private int _cardsDealt ;
-    private ArrayList<Card> _pool; 
+    //private ArrayList<Card> _pool; 
 
     // Creates a deck of 52 cards
     public Deck(){
@@ -16,7 +16,7 @@ public class Deck {
 		_deck.add( c );
 	    }
 	}
-	_pool = new ArrayList<Card>();
+	//_pool = new ArrayList<Card>();
     }
 
     public void shuffle(){
@@ -27,6 +27,16 @@ public class Deck {
 	}
     }
 
+    /*
+    public void makePool() {
+	//System.out.println(_cardsDealt);
+	for (int x = _cardsDealt; x < 52; x++){
+	    // System.out.println("counter: " + x); 
+	    _pool.add(_deck.get(x));
+	}
+    }
+    */
+
 
      public void deal( Player[] players ){
 	shuffle();
@@ -36,47 +46,48 @@ public class Deck {
 	    while(counter <(numPlayers * 7)){
 		for (Player p : players){
 		    p.addToHand(_deck.get(counter));
+		    _deck.remove(counter);
 		    counter += 1;
 		}
 	    }
-	    _cardsDealt -= (7*numPlayers); 
+	    _cardsDealt += (7*numPlayers); 
 	}
 	else { //4-5 inclusive players = 5 cards each 
 	    int counter = 0;
 	    while(counter <(numPlayers * 5)){
 		for (Player p : players){
 		    p.addToHand(_deck.get(counter));
+		    _deck.remove(counter);
 		    counter += 1;
 		}
 	    }
-	    _cardsDealt -= (7*numPlayers); 
+	    _cardsDealt += (5*numPlayers); 
 	}
+	//makePool();
      }
 
-    public ArrayList<Card> getPool(){
-	for (int x = _cardsDealt-1; x < _deck.size(); x++){
-	    _pool.add(_deck.get(x));
-	}
-	return _pool;
+    
+    //removes the first Card from the _deck
+    public void removeFromDeck(){
+	_deck.remove(0);
+	_cardsDealt += 1;
     }
+					     
 
     //ACCESSORS ============================================
-    public int getSize(){
-	return _deck.size();
+    public int getCardsDealt() {
+	return _cardsDealt;
+    }
+
+    public ArrayList<Card> getDeck(){
+	return _deck;
     }
     //====================================================
 
     
     //overwritten toString()
     public String toString(){
-	String retStr = "";
-	for (int x =0; x < _deck.size() ; x++){
-	    if (x != 0 && x%4 == 0){
-		retStr+="\n";
-	    }
-	    retStr += _deck.get(x) + "     ";
-	}
-	return retStr;
+	return _deck.toString();
     }
     
 
@@ -91,8 +102,13 @@ public class Deck {
 	Player player2 = new Human("mary");
 	Player[] exPlayers = {player1, player2};
 	deck1.deal(exPlayers);
-	System.out.println(player1.showHand());
-	System.out.println(deck1.getPool());
+	//System.out.println(player1.showHand());
+	//System.out.println(player2.showHand());
+	//System.out.println(deck1.getCardsDealt());
+	System.out.println(deck1.getDeck().size());
+	deck1.removeFromDeck();
+	System.out.println(deck1.getDeck().size());	
+	
 	
     }
 }
