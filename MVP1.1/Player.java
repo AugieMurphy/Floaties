@@ -3,7 +3,7 @@ public abstract class Player {
     // instance vars
     protected Hand _hand;
     protected int _numBooks;
-    protected String _name;    // instance var
+
     
     // default constructor
     public Player(){ 
@@ -24,6 +24,10 @@ public abstract class Player {
     public String showHand() {
 	return _hand.toString();
     }
+
+    
+
+   
 
     abstract public String getName();
 

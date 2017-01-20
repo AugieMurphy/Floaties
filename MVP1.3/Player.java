@@ -69,10 +69,9 @@ public abstract class Player {
 
     //returns number of new books found 
     public int checkForBooks(){
-	int newBooks =0;
+	int newBooks = 0;
 	for (int x = 0; x < _hand.getHandSize()-3; x++){
 	    if (_hand.get(x).getRank() == _hand.get(x+3).getRank()){
-		System.out.println(x);
 		_typesOfBooks.add((_hand.get(x)).getRank());
 		for (int z = 0; z < 4; z++){
 		    removeFromHand(x);
@@ -83,6 +82,32 @@ public abstract class Player {
 	_numBooks += newBooks;
 	return newBooks; 
     }
+
+    public String printNewBooks(){
+	int newBooks = checkForBooks();
+	String retStr = "new books: ";
+	for (int c = _typesOfBooks.size()-newBooks; c < _typesOfBooks.size(); c++){
+	    if (c == Card.ACE){
+		retStr += "Aces, ";
+	    }
+	    else if (c == Card.KING){
+		retStr += "Kings, ";
+	    }
+	    else if (c == Card.QUEEN){
+		retStr += "Queens, ";
+	    }
+	    else if (c == Card.JACK){
+		retStr += "Jacks, "; 
+	    }
+	    else {
+		retStr += c + ", ";
+	    }
+	}
+	retStr = retStr.subString(0,retStr.length() -2);
+	return retStr;
+    }
+	
+	    
 
 
 	
@@ -104,27 +129,6 @@ public abstract class Player {
     }
     //=================================================
 
-
-    /*
-    public boolean ask(Player n, card c){
-        return n.search( c );
-    }
-
-    public int search(Card c){
-	for( int x = 0; x < _hand.size(); x++ ){
-	    if( _hand.get( x ).compareTo( c ) == 0 ){ count++ }
-	}
-	return count;
-    }
-
-    public boolean makeBooks(){
-	for( int x = 0; x < _hand.size(); x++ ){
-	    if( search( _hand.get(x) ) > 4 ){
-		numBooks++;
-      
-	}
-    }
-    */
     
     public static void main(String[] args){
 	Player player1 = new Human("jake");

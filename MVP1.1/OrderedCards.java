@@ -65,7 +65,7 @@ public class OrderedCards{ // wrapper class of ArrayList
     // main method solely for testing purposes
     public static void main( String[] args ) {
 
-	/* =====================================
+	
 	OrderedCards Franz = new OrderedCards();
 
 	System.out.println("\nValues to add via addBinary() calls:");
@@ -80,7 +80,7 @@ public class OrderedCards{ // wrapper class of ArrayList
 	System.out.println("\nafter population via addBinary() calls:");
 	System.out.println( Franz );
 	System.out.println();
-
+/* =====================================
 	====================================*/
 
     }

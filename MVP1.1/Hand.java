@@ -56,5 +56,6 @@ public class Hand{
 	cards1[0] = card1;
 	Hand hand1 = new Hand(cards1);
 	System.out.println(hand1);
+
     }
 }

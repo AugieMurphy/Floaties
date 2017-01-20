@@ -1,6 +1,8 @@
 public class Human extends Player {
-
-
+    
+    //instance vars 
+    private String _name;
+    
     public Human() { // constructor
 	super();
 	

@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Player{
+public abstract class  Player{
     
     protected Hand _hand;
     protected int _numBooks;
@@ -16,9 +16,7 @@ public class Player{
 	return true;
     }
     
-    public String getName(){
-	return _name;
-    }
+    public abstract String getName();
     
     public String showHand(){
         return _hand.toString();
@@ -42,14 +40,13 @@ public class Player{
 	return _hand.remove(r);
     }
 
-    public boolean ask(Player p, int r){
+    public int ask(Player p, int r){
 	if( p.search(r) ){
 	    while( p.frequency(r) > 0 ){
 		_hand.add( p.remove(r) );
 	    }
-	    return true;
 	}
-	return false;
+	return p.frequency(r);
     }
    
 
@@ -65,10 +62,10 @@ public class Player{
 	Player[] murphy = new Player[4];
 	System.out.println("Creating players augie, silo, lucy, and sully...");
 	
-	Player august = new Player("augie");
-	Player lucy = new Player("lucy");
-	Player sullivan = new Player("sully");
-	Player silo = new Player("silo");
+	Player august = new Human("augie");
+	Player lucy = new Human("lucy");
+	Player sullivan = new Human("sully");
+	Player silo = new Human("silo");
 	System.out.println("Putting players into array of players --> murphy");
 
 	murphy[0] = august;
@@ -97,12 +94,17 @@ public class Player{
 	
 	System.out.println("\naugie is asking sully for an eight... ");
 	
+	Card card1 = new Card (8, Card.SPADES);
+	Card card2 = new Card(8, Card.HEARTS);
+	sullivan.add(card1);
+	sullivan.add(card2);
 	System.out.println("sully's hand: ");
 	System.out.println( sullivan.showHand() );
 
 	System.out.println("augie's hand: ");
 	System.out.println( august.showHand() );
 	
+
 	System.out.println("sully has an eight is --> " + sullivan.search(8));
 	
 	System.out.println("augie gets an eight is --> " + august.ask( sullivan, 8 ));
