@@ -14,10 +14,12 @@ public abstract class Player {
 	_typesOfBooks = new ArrayList<Integer>();
     }
 
-    public Player(Hand hand){
-	this();
-	_hand = hand;
-    }
+    /* since player is never instantiated knowing their hand, this isn't necessary. Not a criticism, it's just that they have to be added to turn and then be dealt cards. Now we have draw and stuff, this is just confusing */
+    
+    //    public Player(Hand hand){ //if it was necessary, should take name param
+    //	this();
+    //	_hand = hand;
+    // }
 
     public boolean addToHand(Card c){
 	_hand.add(c);
@@ -39,20 +41,13 @@ public abstract class Player {
 	}	
     }
 
-    public int ask(Player p, int rank){
-	int startPt  = p.search(rank);
+
+    public int ask(int rank){
 	int frequency = 0;
-	Hand pHand = p.getHand();
-	if (startPt == -1){
-	    frequency = -1;
+	for( int startPt = search(rank); _hand.get(startPt) == _hand.get(startPt+frequency); frequency++ ){
+	    _hand.addToHand(_hand.remove(startPt));
 	}
-	else {
-	    while ((pHand.get(startPt)).getRank() == rank){
-		addToHand(p.removeFromHand(startPt));
-		frequency += 1;
-	    }
-	}
-	return frequency; 
+	return frequency;
     }
 
     //returns start point that represents the index of the _hand in which the given rank was found
