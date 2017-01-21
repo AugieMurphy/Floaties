@@ -3,31 +3,74 @@ import java.util.ArrayList;
 public class OrderedCards{ // wrapper class of ArrayList
 
     private ArrayList<Card> _data;
-
+  /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~ CONSTRUCTORS ~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
+    
+    /********** OrderedCards() **********
+  default constructor
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public OrderedCards(){
 	_data = new ArrayList<Card>();
     }
     
+    /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~~~ ACCESSORS ~~~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
+    public int size() {
+	return _data.size(); 
+    }
+
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
+    public Card get( int index ) {
+	return _data.get(index); 
+    }
+    
+    /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
+
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public String toString() {
 	return _data.toString();  
     }
 
-
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public Card remove( int index ) {
 	return _data.remove(index); 
     }
 
 
-    public int size() {
-	return _data.size(); 
-    }
-
-    
-    public Card get( int index ) {
-	return _data.get(index); 
-    }
-
-
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public void addLinear( Card newVal ) {
 	int index = 0; 
 	for (int x = 0; x < _data.size() ; x++){
@@ -38,11 +81,23 @@ public class OrderedCards{ // wrapper class of ArrayList
 	_data.add(index, newVal);
 
     }
-
+    
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
    public void addBinary(Card newCard){
 	_data.add(binarySearch(newCard, _data.size(), 0), newCard);
     }
 
+    /********** methodName() **********
+		description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public int binarySearch(Card newCard, int high, int low){
 	if (high == low){
 	    return high; }
@@ -65,23 +120,28 @@ public class OrderedCards{ // wrapper class of ArrayList
     // main method solely for testing purposes
     public static void main( String[] args ) {
 
-	/* =====================================
 	OrderedCards Franz = new OrderedCards();
-
+	
 	System.out.println("\nValues to add via addBinary() calls:");
-
+	
 	// testing binary  search
-	for( int i = 0; i < 10; i++ ) {
-	    Card valToAdd = new Card((int) (13 * Math.random() + 1), (int)( 4 * Math.random()) );
-	    System.out.println( valToAdd );
-	    Franz.addBinary( valToAdd );
+	
+	int x = 5;
+	while( x > 0 ){
+	    
+	    int suit = (int)(Math.random() * 3); //random suit
+	    int rank = (int)(Math.random() * 12); //random rank
+	    
+	    Card c = new Card(rank,suit);
+	    System.out.println( "Card to add --> " + c );
+	    Franz.addBinary(c);
+	    System.out.println( "Current Franz: " + Franz );
+	    
+	    x--;
 	}
 
-	System.out.println("\nafter population via addBinary() calls:");
+	System.out.println("\npopulated Franz: :");
 	System.out.println( Franz );
-	System.out.println();
-
-	====================================*/
 
     }
 

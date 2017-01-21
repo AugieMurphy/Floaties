@@ -4,8 +4,9 @@ public abstract class Player {
     // instance vars
     protected Hand _hand;
     protected int _numBooks;
-    protected ArrayList<Integer> _typesOfBooks; //this is picky, but can we just make it _books? also, why can't it be an ArrayList of cards???
-    protected String _name;   
+    protected ArrayList<Integer> _typesOfBooks;
+    // protected ArrayList<Card> _books; //commented out alternate pathway
+    protected String _name;
     
     // default constructor
     public Player(){ 
@@ -13,11 +14,6 @@ public abstract class Player {
 	_numBooks = 0;
 	_typesOfBooks = new ArrayList<Integer>();
     }
-
-    //public Player(Hand hand){
-    //	this();
-    //	_hand = hand;
-    //}
 
     public boolean addToHand(Card c){
 	_hand.add(c);
@@ -34,8 +30,9 @@ public abstract class Player {
 
     public void draw(Deck d, int numCards) {
 	for (int x =0; x < numCards; x++){
-	    addToHand(d.getDeck().get(0));
-	    d.removeFromDeck();
+	    //addToHand(d.getDeck().get(0));
+	    //d.removeFromDeck();
+	    addToHand( d.remove() );
 	}	
     }
 

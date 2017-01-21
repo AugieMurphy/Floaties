@@ -7,51 +7,127 @@ public abstract class Player {
     protected ArrayList<Integer> _typesOfBooks;
     protected String _name;   
     
-    // default constructor
+
+    /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~ CONSTRUCTORS ~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
+    
+    /********** Player() **********
+	   default constructor
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public Player(){ 
 	_hand = new Hand();
 	_numBooks = 0;
 	_typesOfBooks = new ArrayList<Integer>();
     }
-
-    /* since player is never instantiated knowing their hand, this isn't necessary. Not a criticism, it's just that they have to be added to turn and then be dealt cards. Now we have draw and stuff, this is just confusing */
     
-    //    public Player(Hand hand){ //if it was necessary, should take name param
+    /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~~ ACCESSORS ~~~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
+    
+    //ACCESSORS=========================================
+    public int getNumBooks(){
+	return _numBooks;
+    }
+
+    public Hand getHand(){
+	return _hand;
+    }
+
+    public ArrayList<Integer> getTypesOfBooks(){
+	return _typesOfBooks;
+    }
+
+    abstract public String getName();
+    //=================================================
+    
+    /* since player is never instantiated knowing their hand, this isn't necessary. Not a criticism, it's just that they have to be added to turn and then be dealt cards. Now we have draw and stuff to deal with other issues */
+    
+    // public Player(Hand hand){ // should take name param
     //	this();
     //	_hand = hand;
     // }
 
+
+    /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~~~~~~
+      These methods allow the Player to interact with their cards and other players once they have implemented getName()...(more info here)
+      -------------------------------------------------*/
+    
+    /********** showHand() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
+    public String showHand(){
+	return _hand.toString();
+    }
+
+    /********** addToHand() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
     public boolean addToHand(Card c){
 	_hand.add(c);
 	return true;
     }
 
-    public Card removeFromHand(int index){
-	return _hand.remove(index);
+    /********** removeFromHand() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
+    public Card removeFromHand(int i){
+	return _hand.remove(i);
     }
 
-    public String showHand() {
-	return _hand.toString();
-    }
-
+    /********** draw() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
     public void draw(Deck d, int numCards) {
 	for (int x =0; x < numCards; x++){
-	    addToHand(d.getDeck().get(0));
-	    d.removeFromDeck();
+	    //addToHand(d.getDeck().get(0));
+	    ///d.removeFromDeck();
+	    addToHand(d.removeFromDeck());
 	}	
     }
 
+    /********** draw() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
+    public void draw(Deck d){ //so that drawing one card doesn't require more variables in driver
+	Card printCard = d.removeFromDeck();
+	addToHand(printCard);
+	System.out.println(printCard);
+    }	
 
-    public int ask(int rank){
+    /********** ask() **********
+     // PRECOND::
+     // POSTCOND:: 
+     // EX:
+     ******************************/
+     public int ask(int rank, Player p){
 	int frequency = 0;
-	for( int startPt = search(rank); _hand.get(startPt) == _hand.get(startPt+frequency); frequency++ ){
-	    _hand.addToHand(_hand.remove(startPt));
+	for( int startPt = p.search(rank); (p.getHand()).get(startPt) == (p.getHand()).get(startPt+frequency); frequency++ ){
+	    addToHand(p.removeFromHand(startPt));
 	}
 	return frequency;
     }
 
-    //returns start point that represents the index of the _hand in which the given rank was found
-    public int  search(int rank){
+    /********** search() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
+     public int  search(int rank){
 	int start = -1;
 	for (int x = 0; x < _hand.getHandSize(); x++){
 	    if ((_hand.get(x)).getRank() == rank) {
@@ -62,8 +138,12 @@ public abstract class Player {
 	return start;
     }
 
-    //returns number of new books found 
-    public int checkForBooks(){
+    /******* checkForBooks() *******
+     // PRECOND::
+     // POSTCOND:: 
+     // EX:
+     ******************************/
+     public int checkForBooks(){
 	int newBooks = 0;
 	for (int x = 0; x < _hand.getHandSize()-3; x++){
 	    if (_hand.get(x).getRank() == _hand.get(x+3).getRank()){
@@ -78,6 +158,11 @@ public abstract class Player {
 	return newBooks; 
     }
 
+    /********** printNewBooks() **********
+     // PRECOND::
+     // POSTCOND:: returns a String representation of hand
+     // EX:
+     ******************************/
     public String printNewBooks(){
 	int newBooks = checkForBooks();
 	String retStr = "new books: ";
@@ -98,31 +183,9 @@ public abstract class Player {
 		retStr += c + ", ";
 	    }
 	}
-	retStr = retStr.subString(0,retStr.length() -2);
+	retStr = retStr.substring(0,retStr.length() -2);
 	return retStr;
     }
-	
-	    
-
-
-	
-    abstract public String getName();
-
-
-
-    //ACCESSORS=========================================
-    public int getNumBooks(){
-	return _numBooks;
-    }
-
-    public Hand getHand(){
-	return _hand;
-    }
-
-    public ArrayList<Integer> getTypesOfBooks(){
-	return _typesOfBooks;
-    }
-    //=================================================
 
     
     public static void main(String[] args){
@@ -156,7 +219,75 @@ public abstract class Player {
 	System.out.println("\n\nPaul's Hand: " + player2.showHand());
 	System.out.println("\n\nJake's Hand: " + player1.showHand());
 	*/
- 
+
+	System.out.println("\n*******************************************");
+		
+
+
+	Player[] murphy = new Player[4];
+	System.out.println("Creating players augie, silo, lucy, and sully...");
+	
+	Player august = new Human("augie");
+	Player lucy = new Human("lucy");
+	Player sullivan = new Human("sully");
+	Player silo = new Human("silo");
+	System.out.println("Putting players into array of players --> murphy");
+
+	murphy[0] = august;
+	murphy[1] = silo;
+	murphy[2] = lucy;
+	murphy[3] = sullivan;
+	
+	Deck d = new Deck();
+	d.deal( murphy );
+
+	System.out.println("\naugie's hand: ");
+	System.out.println( august.showHand() );
+	
+	System.out.println("\nsilo's hand: ");
+	System.out.println( silo.showHand() );
+	
+	System.out.println("\nlucy's hand: ");
+	System.out.println( lucy.showHand() );
+
+	System.out.println("\nsully's hand: ");
+	System.out.println( sullivan.showHand() );
+	
+	System.out.println("\nlucy is searching for a 6...");
+	System.out.println("\tlucy has a 6? --> " + lucy.search(6) );
+	System.out.println( "\tSee for yourself...\n\t" + lucy.showHand() );
+	
+	System.out.println("\naugie is asking sully for an eight... ");
+	
+	Card cardO = new Card (8, Card.SPADES);
+	Card cardI = new Card(8, Card.HEARTS);
+	sullivan.addToHand(cardO);
+	sullivan.addToHand(cardI);
+	System.out.println("sully's hand: ");
+	System.out.println( sullivan.showHand() );
+
+	System.out.println("augie's hand: ");
+	System.out.println( august.showHand() );
+	
+
+	System.out.println("sully has an eight is --> " + sullivan.search(8));
+	
+	System.out.println("augie gets an eight is --> " + august.ask( 8,sullivan ));
+	
+	System.out.println("sully's hand now: ");
+	System.out.println( sullivan.showHand() );
+
+	System.out.println("augie's hand now: ");
+	System.out.println( august.showHand() );
+	
+	System.out.println("silo's hand now: ");
+	System.out.println( silo.showHand() );
+	
+	System.out.println("silo is drawing a card...");
+        silo.draw(d);
+
+	System.out.println("silo's hand now: ");
+	System.out.println( silo.showHand() );
 	
     }
 

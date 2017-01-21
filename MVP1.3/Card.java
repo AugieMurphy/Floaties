@@ -16,18 +16,32 @@ public class Card implements Comparable{
     public static final int QUEEN = 12;
     public static final int KING = 13;
 
-    //default constructor
-    public Card (){
-	_suit = -1;
-	_rank = 0;
-    }
+     /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~ CONSTRUCTORS ~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
+    
 
+    //default constructor
+    //    public Card (){
+    //	_suit = -1;
+    //	_rank = 0;
+    //}
+    
+    /********** methodName() **********
+ 			description
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     // overloaded constructor
     public Card( int newRank, int newSuit ){
 	_suit = newSuit;
         _rank = newRank; 
     }
-
+    
+    /*--------------------------------------------------
+      ~~~~~~~~~~~~~~~~~~~~ ACCESSORS ~~~~~~~~~~~~~~~~~~~
+      -------------------------------------------------*/
     //Accessors ===============================
     public int getSuit(){
 	return _suit;
@@ -37,10 +51,30 @@ public class Card implements Comparable{
     public int getRank(){
 	return _rank;
     }
+
+    public String faceValue(){ // accessor called in toString()
+	if( _rank == JACK ){ return " JACK"; }
+	if( _rank == QUEEN ){ return " QUEEN"; }
+	if( _rank == KING ){ return " KING";  }
+	if( _rank == ACE ){ return " ACE"; }
+	return "" + _rank;
+    }
+    public String suitStyle(){ // accessor called in toString()
+    	String retSuit = "";
+	if( _suit == HEARTS){ return " of hearts"; } // " ♡ "; }
+	if( _suit == SPADES ){ return " of spades"; } // " ♤ "; }
+	if( _suit == DIAMONDS ){ return " of diamonds";} // " ♢ "; }
+	if( _suit == CLUBS ){ return " of clubs"; } // " ♧ "; }
+	return "" + _suit;
+    }
     //=========================================
 
-
-    // compares cards
+    /********** methodName() **********
+		compares cards
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
     public int compareTo(Object other ){
 	if(_rank == ((Card) other)._rank && _suit == ((Card) other)._suit  )
 	    {return 0; }
@@ -50,45 +84,58 @@ public class Card implements Comparable{
 	    return 1;
 	}
     }
+    //same code, i just wanted to suggest stuff but it was confusing to comment next to it so i put it below. the format just allows comparison of cards of the same rank. Ultimately, it will get the cards in rank order either way. This way they also compare suits.
+    /***
+    public int compareTo(Object other ){
+	int compare2 = ((Card)other).getRank();
+	if( _rank == compare2 ){
+	    int compare2 = ((Card)other).getSuit();
+	}
+	if( _rank < compare2 ){ return -1; }
+	if( _rank > r2 ){ return 1; }
+	else{ return 0; }
+    }
+     ***/
 
-    public String toString(){
-        String retStr = "";
-	if (_rank == ACE){
-	    retStr += "Ace of ";
-	}
+    /********** methodName() **********
+     // PRECOND::
+     // POSTCOND::
+     // EX:
+     ******************************/
+    public String toString(){ //else if doesn't make sense here. rank is final. If it has one rank, it won't fall into multiple ifs.
+	// String retRank = "";
+	// if( _rank == JACK ){ retRank = "JACK"; }
+	// if( _rank == QUEEN ){ retRank = "QUEEN"; }
+	// if( _rank == KING ){ r "KING";  }
+	// if( _rank == ACE ){ return "ACE"; }
 	
-	else if (_rank == KING){
-	    retStr += "King of ";
-	}
-	
-	else if (_rank == QUEEN){
-	    retStr += "Queen of ";
-	}
-	
-	else if (_rank == JACK){
-	    retStr += "Jack of ";
-	}
-	
-	else {retStr += _rank + " of ";}
-	if (_suit == HEARTS){
-	    retStr += "Hearts";
-	}
-	else if (_suit == DIAMONDS){
-	    retStr += "Diamonds";
-	}
-	else if (_suit == CLUBS){
-	    retStr += "Clubs";
-	}
-	else {
-	    retStr += "Spades";
-	}
-	return retStr;
+	//else {retStr += _rank + " of ";} //i think printing th suits is clearer
+	//String retSuit = "";
+	//if( _suit == HEARTS){ retSuit = " of hearts"; } // " ♡ "; }
+	//if( _suit == SPADES ){ retSuit = " of spades"; } // " ♤ "; }
+	//if( _suit == DIAMONDS ){ retSuit = " of diamonds";} // " ♢ "; }
+	//if( _suit == CLUBS ){ retSuit = " of clubs"; } // " ♧ "; }
+        return "[" + faceValue() + suitStyle() + "]";
     }
     
     public static void main( String[] args ){
+
+	System.out.println("Creating new cards... \n");
+	
+	System.out.print("\nHere's Card One: ");	
 	Card card1 = new Card(ACE,DIAMONDS);
+	System.out.print( card1 );
+	
+	System.out.print("\nHere's Card Two: ");
 	Card card2 = new Card(2, CLUBS);
-	//System.out.println(card1.compareTo(card2));
-	System.out.println(card1);
+	System.out.print( card2 );
+
+	System.out.print("\nThe Higher Ranked Card IIIISSSS: ");
+        if( card1.compareTo(card2) < 0 ){
+	    System.out.print( card2 + "\n");
+	}
+	else{
+	    System.out.print( card1 + "\n");
+	}
     }
 }
