@@ -12,12 +12,14 @@ GO FISH!
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc...
+-Resolved issue with user input where the entire game must be restarted when an exception is thrown.
+-Resolved issue with Player and its subclasses which required a large amount of typecasting.
+
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -the Deck display is unsatisfactory 
--Whenever user input throws an exception, the entire game must be restarted. 
+
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,11 +30,14 @@ MID-DEVELOPMENT DESIGN CHANGES
 -Changed functionality of the driver file; it now uses an ArrayList of Players to keep track of turns (the turns are the indexes ). 
 -Changed the concept for OrderedCards so that it now acts as a wrapper class for Hand.
 -Changed class Player to be abstract, and to contain abstract method getName().
+-Changed functionality of the Deck and Hand classes in order to take advantage of the fact that all Hands are sorted.
 
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
+-If you're going to go to the trouble of sorting something and maintaining that sort, you should take advantage of that fact!
+-Things get confusing very fast when you're working with upwards of five classes... communication is important.
+
 ||||||||||||||||||||||||||||||||||||||||||
 
 
@@ -114,4 +119,12 @@ Augie :: Created GoFish directory. Wrote detailed main bodies for all classes an
 Gabi:: Continued working on takeTurn().
 Sasha::
 ==============================================================
+
+2017-1-22
+--------------------------------------------------------------
+Augie :: 
+Gabi:: Continued working on takeTurn().
+Sasha::
+==============================================================
+
 
