@@ -61,43 +61,21 @@ public class Deck {
     }
 
     /********** methodName() **********
-		description...
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+     // PRECOND:: numCards * numPlayers < size of deck, Player class has a draw(Deck,int) method 
+     // POSTCOND:: returns nothing and removes cards from the _deck and adds them to each player in the given array 7 cards if there are less than 4 players or 5 cards otherwise 
      // EX:
      ******************************/
     public void deal( Player[] players ){
 	shuffle();
 	int numPlayers = players.length;
-	
-	// what if we condensed both sequences into one!!! ANSWER: hi Augie:)See fb msges for answer
-	// if( numPlayers <= 3 ){ numCards = 7; }
-	// else{ numCards = 5; }
-	//
-	// if( numPlayers*numCards < deck.size() )
-	// for( int x = 0; x < numPlayers*numCards; x++){ players[x%numPlayers].draw(); }
-	
-	if (numPlayers <= 3){ // with 3 players or less, deal 7 cards each
-	    int counter = 0; 
-	    while( counter < (numPlayers * 7) ){
-		for (Player p : players){ 
-		    p.addToHand(_deck.get(counter)); 
-		    _deck.remove(counter);
-		    counter += 1;
-		}
-	    }
+	int numCards = 0;
+	if( numPlayers <= 3 ){ numCards = 7; }
+	else{ numCards = 5; }
+	for (int x = 0; x < numPlayers * numCards; x ++){
+	    players[x%numPlayers].draw(this, 1);
 	}
-	else { // with 4-5 players (inclusive). deal 5 cards each 
-	    int counter = 0;
-	    while( counter < (numPlayers*5) ){
-		for (Player p : players){
-		    p.addToHand(_deck.get(counter));
-		    _deck.remove(counter);
-		    counter += 1;
-		}
-	    }
-	}
-    }
+	
+    } //end deal
     
     /********** methodName() **********
 		description...
@@ -113,8 +91,8 @@ public class Deck {
     
     public static void main( String[] args ){
 	Deck deck1 = new Deck();	
-	//	System.out.println(deck1);
-	//	System.out.println(deck1.getSize());
+       	//System.out.println(deck1);
+	System.out.println("Size of deck1: " + deck1.getDeck().size());
 	//deck1.shuffle();
 	//System.out.println(deck1);
 	Player player1 = new Human("jake");
@@ -125,8 +103,10 @@ public class Deck {
 	//System.out.println(player2.showHand());
 	//System.out.println(deck1.getCardsDealt());
 	System.out.println(deck1.getDeck().size());
-	deck1.removeFromDeck();
-	System.out.println(deck1.getDeck().size());	
+	//deck1.removeFromDeck();
+	System.out.println(player1.showHand());
+	System.out.println(player2.showHand());
+	//System.out.println(deck1.getDeck().size());	
 	
 	
     }
