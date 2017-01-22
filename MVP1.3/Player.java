@@ -105,12 +105,16 @@ public abstract class Player {
      // EX:
      ******************************/
      public int ask(int rank, Player p){
+	 int myStartPt = this.search(rank);
 	 int startPt = p.search(rank);
-	 if (startPt == -1){
+	 if (myStartPt == -1){
 	     return -1;
 	 }
+	 int frequency = 0;	 
+	 if (startPt == -1){
+	     return frequency; 
+	 }
 	 else {
-	     int frequency = 0;
 	     while (((p.getHand()).get(startPt)).getRank() == rank){
 		 addToHand(p.removeFromHand(startPt));
 		 frequency ++;

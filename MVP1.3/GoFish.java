@@ -122,6 +122,7 @@ public class GoFish{
 
 	int rank = rankStrToInt(Keyboard.readString());
 
+
 	while(rank < 1){
 	    if (rank == -1){
 		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling (case INsensitive).");
@@ -133,9 +134,12 @@ public class GoFish{
 	}
 
 
-	
+
 	int cardsRecieved = _players[iCurrentPlayer].ask(rank, _players[iplayerBeingAsked]);
 
+
+
+	
 	while (cardsRecieved < 0) {
 	    System.out.println("\n" + _players[iCurrentPlayer].getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
 	    rank = rankStrToInt(Keyboard.readString());
@@ -145,10 +149,10 @@ public class GoFish{
 	System.out.println("\n" + _players[iCurrentPlayer].getName() + " asked " + _players[iplayerBeingAsked].getName() + " for " + Card.numToRank(rank) + "s.");
 
 	if (cardsRecieved == 0){
-	    System.out.println(_players[iplayerBeingAsked] + " says Go Fish!");
+	    System.out.println(_players[iplayerBeingAsked].getName() + " says Go Fish!");
 	}
 	else {
-	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "s and has given them to "+ _players[iCurrentPlayer].getName());
+	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given them to "+ _players[iCurrentPlayer].getName());
 	}
 
 	
@@ -201,7 +205,7 @@ public class GoFish{
 	    //System.out.println(playerz[0].showHand());
 	}
 	catch(Exception exception){
-	    System.out.println("Please read instructions carefully!");
+	    System.out.println(exception);
 	}
     }
 
