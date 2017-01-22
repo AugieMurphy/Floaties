@@ -117,6 +117,25 @@ public class Card implements Comparable{
 	//if( _suit == CLUBS ){ retSuit = " of clubs"; } // " ♧ "; }
         return "[" + faceValue() + suitStyle() + "]";
     }
+
+
+    public static String numToRank(int numRank){
+	if (numRank == Card.ACE){
+	    return "Ace";
+	}
+	else if (numRank == Card.KING){
+	    return "King";
+	}
+	else if (numRank == Card.QUEEN){
+	    return "Queen";
+	}
+	else if (numRank == Card.JACK){
+	    return "Jack";
+	}
+	else {
+	    return String.valueOf(numRank);
+	}
+    }
     
     public static void main( String[] args ){
 

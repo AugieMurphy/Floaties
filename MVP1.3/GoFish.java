@@ -65,11 +65,12 @@ public class GoFish{
 	
 	else {
 	    System.out.println( "How many players? Can be from 2 to 5 inclusive.");
-	    
+
+
 	    int numPlayerz = Keyboard.readInt();
 	    
 	    while (numPlayerz > 5 || numPlayerz < 2){
-		System.out.print("Invalid num players. Must be from 2 to 5 inclusive. Try again:");
+		System.out.print("\nInvalid num players. Must be from 2 to 5 inclusive. Try again:\n");
 		numPlayerz = Keyboard.readInt();
 	    }
 	    
@@ -98,26 +99,98 @@ public class GoFish{
 	System.out.println(currentPlayer.showHand()); 
 
 	// now handle asking
-	System.out.println("\nWho would you like to ask for a card?");
+	System.out.println("\nWho would you like to ask for a card? Please type their corresponding number in the list.");
 	for (int i = 0; i < _numPlayers; i++){
 	    System.out.println( i + ": " + _players[i].getName());
 	}
 	System.out.println();
 	
-	int indexAskPlayer = Keyboard.readInt();
-	while (indexAskPlayer < 0 || indexAskPlayer > (_numPlayers - 1) || indexAskPlayer == iCurrentPlayer){
-	    if (indexAskPlayer == iCurrentPlayer) {
+	int iplayerBeingAsked = Keyboard.readInt();
+	while (iplayerBeingAsked < 0 || iplayerBeingAsked > (_numPlayers - 1) || iplayerBeingAsked == iCurrentPlayer){
+	    if (iplayerBeingAsked == iCurrentPlayer) {
 		System.out.println("That's you! Share the love, ask someone else!");
-		indexAskPlayer = Keyboard.readInt();
+		iplayerBeingAsked = Keyboard.readInt();
 	    }
 	    else {
 		System.out.println("Index out of bounds: please pick an existing player");
-		indexAskPlayer = Keyboard.readInt();
+		iplayerBeingAsked = Keyboard.readInt();
 	    }
 	}
+
+	System.out.println("\nWhat rank of cards would you like to ask " + _players[iplayerBeingAsked].getName() + " for? For any specifications about ranks type 'specs'");
+
+
+	int rank = rankStrToInt(Keyboard.readString());
+
+	while(rank < 1){
+	    if (rank == -1){
+		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling case INsensitive.");
+	    }
+	    else {
+		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling, case INsensitive.");
+	    }
+	    rank = rankStrToInt(Keyboard.readString());
+	}
+
+
+	
+	int cardsRecieved = _players[iCurrentPlayer].ask(rank, _players[iplayerBeingAsked]);
+
+	while (cardsRecieved < 0) {
+	    System.out.println("\n" + _players[iCurrentPlayer].getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
+	    rank = rankStrToInt(Keyboard.readString());
+	    cardsRecieved = _players[iCurrentPlayer].ask(rank, _players[iplayerBeingAsked]);
+	}
+
+	System.out.println("\n" + _players[iCurrentPlayer].getName() + " asked " + _players[iplayerBeingAsked].getName() + " for " + Card.numToRank(rank) + "s.");
+
+	if (cardsRecieved == 0){
+	    System.out.println(_players[iplayerBeingAsked] + " says Go Fish!");
+	}
+	else {
+	    System.out.println("\n" + _players[iplayerBeingAsked] + " has " + cardsRecieved + Card.numToRank(rank) + "s and has given them to "+ _players[iCurrentPlayer]);
+	}
+
+	
+	
+	
+
+	
+	
 	
 	
     }//end takeTurn
+
+    public int rankStrToInt(String rank){
+	try {
+	    if ((rank.toLowerCase()).equals("aces")){
+		return Card.ACE;
+	    }
+	    else if ((rank.toLowerCase()).equals("kings")){
+		return Card.KING;
+	    }
+	    else if ((rank.toLowerCase()).equals("queens")){
+		return Card.QUEEN;
+	    }
+	    else if ((rank.toLowerCase()).equals("jacks")){
+		return Card.JACK;
+	    }
+	    else if ((rank.toLowerCase()).equals("specs")){
+       		return 0;
+	    }
+	    else if (Integer.parseInt(rank) > 1 && Integer.parseInt(rank) < 13)  {
+		return Integer.parseInt(rank);
+	    }
+	  
+	    else {
+		return -1;
+	    }
+	}
+	catch (Exception exception){
+	    return -1;
+	}
+	
+    }
   
     public static void main(String[] args){
 	try {
