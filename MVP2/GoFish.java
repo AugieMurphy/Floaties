@@ -120,6 +120,8 @@ public class GoFish{
 	    }
 	}
 
+	Player playerBeingAsked = _players[iplayerBeingAsked];
+
 	System.out.println("\nWhat rank of cards would you like to ask " + _players[iplayerBeingAsked].getName() + " for? For any specifications about ranks type 'specs'");
 
 
@@ -138,51 +140,52 @@ public class GoFish{
 
 
 
-	int cardsRecieved = _players[iCurrentPlayer].ask(rank, _players[iplayerBeingAsked]);
+	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
 
 
 
 	
 	while (cardsRecieved < 0) {
-	    System.out.println("\n" + _players[iCurrentPlayer].getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
+	    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
 	    rank = rankStrToInt(Keyboard.readString());
-	    cardsRecieved = _players[iCurrentPlayer].ask(rank, _players[iplayerBeingAsked]);
+	    cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
 	}
 
 	System.out.println("\n******************************");
-	System.out.println( _players[iCurrentPlayer].getName() + " asked " + _players[iplayerBeingAsked].getName() + " for " + Card.numToRank(rank) + "s.");
+	System.out.println( currentPlayer.getName() + " asked " + playerBeingAsked.getName() + " for " + Card.numToRank(rank) + "s.");
 
 	if (cardsRecieved == 0){
-	    System.out.println(_players[iplayerBeingAsked].getName() + " says Go Fish!");
+	    System.out.println(playerBeingAsked.getName() + " says Go Fish!");
+	    currentPlayer.draw(deck, 1);
 	    _turnCount += 1;
 	}
 	else {
-	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given the card(s) to "+ _players[iCurrentPlayer].getName());
-	    System.out.println(_players[iCurrentPlayer].getName() + " gets to go again!");
+	    System.out.println("\n" + playerBeingAsked.getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given the card(s) to "+ currentPlayer.getName());
+	    System.out.println(currentPlayer.getName() + " gets to go again!");
 	}
 
 	
-	int newBooks = _players[iCurrentPlayer].checkForBooks();
+	int newBooks = currentPlayer.checkForBooks();
 	_totalBooks += newBooks;
 	
 	if (newBooks == 0){
-	    System.out.println (_players[iCurrentPlayer].getName() + " has gotten no new books");
+	    System.out.println (currentPlayer.getName() + " has gotten no new books");
 	}
 	else {
-	    System.out.println(_players[iCurrentPlayer].getName() + " has gotten " + newBooks + " new books\n" + _players[iCurrentPlayer].getName() + "'s " + _players[iCurrentPlayer].printNewBooks(newBooks));
+	    System.out.println(currentPlayer.getName() + " has gotten " + newBooks + " new books\n" + currentPlayer.getName() + "'s " + currentPlayer.printNewBooks(newBooks));
 	}
 
-	if ((_players[iCurrentPlayer].getHand()).size() == 0){
+	if ((currentPlayer.getHand()).size() == 0){
 	    int numCards = 0;
 	    if (_numPlayers <= 3) {numCards =7;}
 	    else {numCards = 5;}
-	    System.out.println(_players[iCurrentPlayer].getName() + " must draw " + numCards + "cards because they have run out of cards");
-	    _players[iCurrentPlayer].draw(deck, numCards); 
+	    System.out.println(currentPlayer.getName() + " must draw " + numCards + "cards because they have run out of cards");
+	    currentPlayer.draw(deck, numCards); 
 	}
 	System.out.println("******************************");
 
 	System.out.println ("\n\n" + currentPlayer.getName() + "'s cards:");
-	System.out.println( _players[iCurrentPlayer].showHand());
+	System.out.println( currentPlayer.showHand());
 	System.out.println("\n================ END " + currentPlayer.getName().toUpperCase() + "'S TURN ==========================\n\n\n");
 
 
