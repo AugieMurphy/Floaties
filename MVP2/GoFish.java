@@ -96,74 +96,18 @@ public class GoFish{
     public void takeTurn(Deck deck){
 	// handle intial display
 	Player currentPlayer =  _players[_turnCount % _numPlayers];
-	int iCurrentPlayer = _turnCount % _numPlayers; 
-	System.out.println("\n================ " + currentPlayer.getName().toUpperCase() + "'S TURN ==========================");
-	System.out.println (currentPlayer.getName() + "'s cards:");
-	System.out.println(currentPlayer.showHand()); 
+	int iCurrentPlayer = _turnCount % _numPlayers;
+	
+	startTurn(currentPlayer);
 
 	// now handle asking
-	System.out.println("\nWho would you like to ask for a card? Please type their corresponding number in the list.");
-	for (int i = 0; i < _numPlayers; i++){
-	    System.out.println( i + ": " + _players[i].getName());
-	}
-	System.out.println();
-	
-	int iplayerBeingAsked = Keyboard.readInt();
-	while (iplayerBeingAsked < 0 || iplayerBeingAsked > (_numPlayers - 1) || iplayerBeingAsked == iCurrentPlayer){
-	    if (iplayerBeingAsked == iCurrentPlayer) {
-		System.out.println("That's you! Share the love, ask someone else!");
-		iplayerBeingAsked = Keyboard.readInt();
-	    }
-	    else {
-		System.out.println("Index out of bounds: please pick an existing player");
-		iplayerBeingAsked = Keyboard.readInt();
-	    }
-	}
-
+	int iplayerBeingAsked = getPlayerBeingAsked(iCurrentPlayer);
 	Player playerBeingAsked = _players[iplayerBeingAsked];
 
-	System.out.println("\nWhat rank of cards would you like to ask " + _players[iplayerBeingAsked].getName() + " for? For any specifications about ranks type 'specs'");
 
+	int rank = getRankBeingAskedFor(playerBeingAsked);
 
-	int rank = rankStrToInt(Keyboard.readString());
-
-
-	while(rank < 1){
-	    if (rank == -1){
-		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling (case INsensitive).");
-	    }
-	    else {
-		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive).");
-	    }
-	    rank = rankStrToInt(Keyboard.readString());
-	}
-
-
-
-	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
-
-
-
-	
-	while (cardsRecieved < 0) {
-	    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
-	    rank = rankStrToInt(Keyboard.readString());
-	    cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
-	}
-
-	System.out.println("\n******************************");
-	System.out.println( currentPlayer.getName() + " asked " + playerBeingAsked.getName() + " for " + Card.numToRank(rank) + "s.");
-
-	if (cardsRecieved == 0){
-	    System.out.println(playerBeingAsked.getName() + " says Go Fish!");
-	    currentPlayer.draw(deck, 1);
-	    _turnCount += 1;
-	}
-	else {
-	    System.out.println("\n" + playerBeingAsked.getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given the card(s) to "+ currentPlayer.getName());
-	    System.out.println(currentPlayer.getName() + " gets to go again!");
-	}
-
+	handleRecievingCards(currentPlayer, playerBeingAsked, rank, deck);
 	
 	int newBooks = currentPlayer.checkForBooks();
 	_totalBooks += newBooks;
@@ -193,6 +137,85 @@ public class GoFish{
 
 	
     }//end takeTurn
+
+    public void startTurn(Player currentPlayer){
+
+    System.out.println("\n================ " + currentPlayer.getName().toUpperCase() + "'S TURN ==========================");
+    System.out.println (currentPlayer.getName() + "'s cards:");
+    System.out.println(currentPlayer.showHand());
+
+}
+
+    public int getPlayerBeingAsked(int iCurrentPlayer){
+
+System.out.println("\nWho would you like to ask for a card? Please type their corresponding number in the list.");
+	for (int i = 0; i < _numPlayers; i++){
+	    System.out.println( i + ": " + _players[i].getName());
+	}
+	System.out.println();
+	
+	int iplayerBeingAsked = Keyboard.readInt();
+	while (iplayerBeingAsked < 0 || iplayerBeingAsked > (_numPlayers - 1) || iplayerBeingAsked == iCurrentPlayer){
+	    if (iplayerBeingAsked == iCurrentPlayer) {
+		System.out.println("That's you! Share the love, ask someone else!");
+		iplayerBeingAsked = Keyboard.readInt();
+	    }
+	    else {
+		System.out.println("Index out of bounds: please pick an existing player");
+		iplayerBeingAsked = Keyboard.readInt();
+	    }
+	}
+
+	return iplayerBeingAsked;
+
+}
+
+    public int getRankBeingAskedFor(Player playerBeingAsked){
+	System.out.println("\nWhat rank of cards would you like to ask " + playerBeingAsked.getName() + " for? For any specifications about ranks type 'specs'");
+
+
+	int rank = rankStrToInt(Keyboard.readString());
+
+
+	while(rank < 1){
+	    if (rank == -1){
+		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling (case INsensitive).");
+	    }
+	    else {
+		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive).");
+	    }
+	    rank = rankStrToInt(Keyboard.readString());
+	}
+	return rank;
+}
+
+    public void handleRecievingCards(Player currentPlayer, Player playerBeingAsked, int rank, Deck deck){
+       	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
+
+
+
+	
+	while (cardsRecieved < 0) {
+	    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
+	    rank = rankStrToInt(Keyboard.readString());
+	    cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
+	}
+
+	System.out.println("\n******************************");
+	System.out.println( currentPlayer.getName() + " asked " + playerBeingAsked.getName() + " for " + Card.numToRank(rank) + "s.");
+
+	if (cardsRecieved == 0){
+	    System.out.println(playerBeingAsked.getName() + " says Go Fish!");
+	    currentPlayer.draw(deck, 1);
+	    _turnCount += 1;
+	}
+	else {
+	    System.out.println("\n" + playerBeingAsked.getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given the card(s) to "+ currentPlayer.getName());
+	    System.out.println(currentPlayer.getName() + " gets to go again!");
+	}
+
+
+	}      
 
     public int rankStrToInt(String rank){
 	try {
