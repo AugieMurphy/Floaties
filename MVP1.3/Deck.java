@@ -3,8 +3,7 @@ import java.util.ArrayList;
 public class Deck {
 
     private ArrayList<Card> _deck;
-    private int _cardsDealt ;
-    //private ArrayList<Card> _pool; 
+
 
     
     /*--------------------------------------------------
@@ -19,7 +18,6 @@ public class Deck {
      ******************************/
     // Creates a deck of 52 cards
     public Deck(){
-	_cardsDealt = 0;
 	_deck = new ArrayList<Card>();
 	for (int x =1; x<14; x++){
 	    for (int y = 0; y < 4 ; y++){
@@ -27,17 +25,11 @@ public class Deck {
 		_deck.add( c );
 	    }
 	}
-	//_pool = new ArrayList<Card>();
     }
 
-    /*--------------------------------------------------
-      ~~~~~~~~~~~~~~~~~~~~ ACCESSORS ~~~~~~~~~~~~~~~~~~~~~
-      These methods allow the deck to interact with these classes by other info, etc...(info here)
-      -------------------------------------------------*/
    
     //ACCESSORS ============================================
     public int getCardsDealt() {
-	//return _cardsDealt;
 	return 52 - _deck.size();
     }
 
@@ -45,6 +37,7 @@ public class Deck {
 	return _deck;
     }
     //====================================================
+    
     //overwritten toString()
     public String toString(){
 	return _deck.toString();
@@ -52,10 +45,6 @@ public class Deck {
     
 
     
-    /*--------------------------------------------------
-      ~~~~~~~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~~~~~~
-      These methods allow the deck to interact with these classes by other info, etc...(info here)
-      -------------------------------------------------*/
     
     /********** methodName() **********
 		description...
@@ -81,7 +70,7 @@ public class Deck {
 	shuffle();
 	int numPlayers = players.length;
 	
-	// what if we condensed both sequences into one!!!
+	// what if we condensed both sequences into one!!! ANSWER: hi Augie:)See fb msges for answer
 	// if( numPlayers <= 3 ){ numCards = 7; }
 	// else{ numCards = 5; }
 	//
@@ -97,7 +86,6 @@ public class Deck {
 		    counter += 1;
 		}
 	    }
-	    // _cardsDealt += (7*numPlayers); // see final comment
 	}
 	else { // with 4-5 players (inclusive). deal 5 cards each 
 	    int counter = 0;
@@ -108,7 +96,6 @@ public class Deck {
 		    counter += 1;
 		}
 	    }
-	    //_cardsDealt += (5*numPlayers); // check out getCardsDealt: also, why do we need this?
 	}
     }
     

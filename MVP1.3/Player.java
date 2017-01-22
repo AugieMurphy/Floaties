@@ -58,7 +58,7 @@ public abstract class Player {
       -------------------------------------------------*/
     
     /********** showHand() **********
-     // PRECOND::
+     // PRECOND:: Hand class has a toString() method
      // POSTCOND:: returns a String representation of hand
      // EX:
      ******************************/
@@ -67,8 +67,8 @@ public abstract class Player {
     }
 
     /********** addToHand() **********
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+     // PRECOND::Hand class has an add(Card) method
+     // POSTCOND:: returns true if the method was successfully executed 
      // EX:
      ******************************/
     public boolean addToHand(Card c){
@@ -77,59 +77,56 @@ public abstract class Player {
     }
 
     /********** removeFromHand() **********
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+     // PRECOND:: Hand class had a remove(int) method that takes an index
+     // POSTCOND:: returns the Card that has just beend removed from the _hand
      // EX:
      ******************************/
     public Card removeFromHand(int i){
 	return _hand.remove(i);
     }
 
+    
     /********** draw() **********
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+     // PRECOND:: numCards is less than the size of Deck d, d is shuffled,  Deck class has removeFromDeck() 
+     // POSTCOND:: does not return anything and decreases the number of Cards in Deck d by numCards and adds numCards from d to _hand
      // EX:
      ******************************/
     public void draw(Deck d, int numCards) {
 	for (int x =0; x < numCards; x++){
-	    //addToHand(d.getDeck().get(0));
-	    ///d.removeFromDeck();
 	    addToHand(d.removeFromDeck());
 	}	
     }
 
-    /********** draw() **********
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
-     // EX:
-     ******************************/
-    public void draw(Deck d){ //so that drawing one card doesn't require more variables in driver
-	Card printCard = d.removeFromDeck();
-	addToHand(printCard);
-	System.out.println(printCard);
-    }	
+   
 
     /********** ask() **********
-     // PRECOND::
-     // POSTCOND:: 
+     // PRECOND::  search(int) returns an index of the first card of a given rank found in a _hand; a player invoking the method is not the same as the Player given as the parameter  
+     // POSTCOND:: returns frequency of rank being asked for in the given Player p's _hand or -1 if a Player was ask for a rank they didn't thave themselves and adds the cards femoved from p's _hand to the player's hand, who is asking, 
      // EX:
      ******************************/
      public int ask(int rank, Player p){
-	int frequency = 0;
-	for( int startPt = p.search(rank); (p.getHand()).get(startPt) == (p.getHand()).get(startPt+frequency); frequency++ ){
-	    addToHand(p.removeFromHand(startPt));
-	}
-	return frequency;
+	 int startPt = p.search(rank);
+	 if (startPt == -1){
+	     return -1;
+	 }
+	 else {
+	     int frequency = 0;
+	     while (((p.getHand()).get(startPt)).getRank() == rank){
+		 addToHand(p.removeFromHand(startPt));
+		 frequency ++;
+	     }
+	     return frequency;
+	 }
     }
 
     /********** search() **********
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+     // PRECOND:: size() implemented in Hand class
+     // POSTCOND:: returns the int that corresponds to the index of the first card fo a given rank found in _hand
      // EX:
      ******************************/
-     public int  search(int rank){
+     public int search(int rank){
 	int start = -1;
-	for (int x = 0; x < _hand.getHandSize(); x++){
+	for (int x = 0; x < _hand.size(); x++){
 	    if ((_hand.get(x)).getRank() == rank) {
 		start = x;
 		break;
@@ -139,13 +136,13 @@ public abstract class Player {
     }
 
     /******* checkForBooks() *******
-     // PRECOND::
-     // POSTCOND:: 
+     // PRECOND:: Card class has getRank(), Hand class has get(int) and size(). 
+     // POSTCOND:: removes from _hand Cards that are part of a new book, adds in _typesOfBooks the rank of any new books, increments _numBooks by number of newBooks, and returns number of newBooks
      // EX:
      ******************************/
      public int checkForBooks(){
 	int newBooks = 0;
-	for (int x = 0; x < _hand.getHandSize()-3; x++){
+	for (int x = 0; x < _hand.size()-3; x++){
 	    if (_hand.get(x).getRank() == _hand.get(x+3).getRank()){
 		_typesOfBooks.add((_hand.get(x)).getRank());
 		for (int z = 0; z < 4; z++){
@@ -159,28 +156,28 @@ public abstract class Player {
     }
 
     /********** printNewBooks() **********
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+     // PRECOND:: checkForBooks() returns the most recently gained books, Card had a public final var for all the face cards
+     // POSTCOND:: returns a String of "new books: " + the rank of each new book
      // EX:
      ******************************/
     public String printNewBooks(){
 	int newBooks = checkForBooks();
 	String retStr = "new books: ";
 	for (int c = _typesOfBooks.size()-newBooks; c < _typesOfBooks.size(); c++){
-	    if (c == Card.ACE){
+	    if (_typesOfBooks.get(c) == Card.ACE){
 		retStr += "Aces, ";
 	    }
-	    else if (c == Card.KING){
+	    else if (_typesOfBooks.get(c) == Card.KING){
 		retStr += "Kings, ";
 	    }
-	    else if (c == Card.QUEEN){
+	    else if (_typesOfBooks.get(c) == Card.QUEEN){
 		retStr += "Queens, ";
 	    }
-	    else if (c == Card.JACK){
+	    else if (_typesOfBooks.get(c) == Card.JACK){
 		retStr += "Jacks, "; 
 	    }
 	    else {
-		retStr += c + ", ";
+		retStr += _typesOfBooks.get(c) + "'s, ";
 	    }
 	}
 	retStr = retStr.substring(0,retStr.length() -2);
@@ -202,9 +199,10 @@ public abstract class Player {
 	for (Card ca : cards){
 	    player1.addToHand(ca);
 	}
-	System.out.println("player1: " + player1.showHand());	
-	System.out.println(player1.checkForBooks());
-	System.out.println(player1.getTypesOfBooks().toString());
+	System.out.println("JAKE: " + player1.showHand());	
+	System.out.println(player1.printNewBooks());
+	System.out.println("JAKE: " + player1.showHand());		
+	
 	/*
 	Player player2 = new Human("paul");
 	Deck deck1 = new Deck();
@@ -220,6 +218,7 @@ public abstract class Player {
 	System.out.println("\n\nJake's Hand: " + player1.showHand());
 	*/
 
+	/*
 	System.out.println("\n*******************************************");
 		
 
@@ -288,9 +287,10 @@ public abstract class Player {
 
 	System.out.println("silo's hand now: ");
 	System.out.println( silo.showHand() );
+	*/
 	
-    }
+    }//end main
 
-}
+}//end Player
 
 

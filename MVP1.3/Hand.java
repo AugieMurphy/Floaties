@@ -28,7 +28,7 @@ public class Hand{
     
 
     //ACCESSORS =======================
-    public int getHandSize(){
+    public int size(){
 	return _hand.size();
     }
 

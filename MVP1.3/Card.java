@@ -53,10 +53,10 @@ public class Card implements Comparable{
     }
 
     public String faceValue(){ // accessor called in toString()
-	if( _rank == JACK ){ return " JACK"; }
-	if( _rank == QUEEN ){ return " QUEEN"; }
-	if( _rank == KING ){ return " KING";  }
-	if( _rank == ACE ){ return " ACE"; }
+	if( _rank == JACK ){ return " Jack"; }
+	if( _rank == QUEEN ){ return " Queen"; }
+	if( _rank == KING ){ return " King";  }
+	if( _rank == ACE ){ return " Ace"; }
 	return "" + _rank;
     }
     public String suitStyle(){ // accessor called in toString()
