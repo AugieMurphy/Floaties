@@ -41,9 +41,13 @@ public class GoFish{
     public Player[] getPlayers (){
 	return _players;
     }
+
+    public int getTotalBooks(){
+	return _totalBooks;
+    }
     //========================================================
     
-    public static GoFish setUp(){
+    public static GoFish setUp(Deck deck){
 	GoFish game;
 	
 	System.out.println( "READY TO PLAY GOFISH!?!?!?!!");
@@ -64,7 +68,7 @@ public class GoFish{
 	}
 	
 	else {
-	    System.out.println( "How many players? Can be from 2 to 5 inclusive.");
+	    System.out.println( "\nHow many players? Can be from 2 to 5 inclusive.");
 
 
 	    int numPlayerz = Keyboard.readInt();
@@ -76,13 +80,12 @@ public class GoFish{
 	    
 	    game = new GoFish(numPlayerz);
 	    for (int x =0; x < numPlayerz; x++){
-		System.out.println("Type name of player" + x);
+		System.out.println("\nType name of player" + x);
 		String name = Keyboard.readWord();
 		game.setPlayers(x , new Human(name));
 	    }
-	    System.out.println("Alright, let's deal the cards!");
-	    Deck deck1 = new Deck();
-	    game.dealTheCards(deck1);
+	    System.out.println("\nAlright, let's deal the cards!");
+	    game.dealTheCards(deck);
 	    //return game;   
 	}
 	return game;
@@ -90,7 +93,7 @@ public class GoFish{
     }//end setUp
  
     // precon: the player taking the current turn is human.... sort out AI turns later!!
-    public void takeTurn(){
+    public void takeTurn(Deck deck){
 	// handle intial display
 	Player currentPlayer =  _players[_turnCount % _numPlayers];
 	int iCurrentPlayer = _turnCount % _numPlayers; 
@@ -146,22 +149,45 @@ public class GoFish{
 	    cardsRecieved = _players[iCurrentPlayer].ask(rank, _players[iplayerBeingAsked]);
 	}
 
-	System.out.println("\n" + _players[iCurrentPlayer].getName() + " asked " + _players[iplayerBeingAsked].getName() + " for " + Card.numToRank(rank) + "s.");
+	System.out.println("\n******************************");
+	System.out.println( _players[iCurrentPlayer].getName() + " asked " + _players[iplayerBeingAsked].getName() + " for " + Card.numToRank(rank) + "s.");
 
 	if (cardsRecieved == 0){
 	    System.out.println(_players[iplayerBeingAsked].getName() + " says Go Fish!");
+	    _turnCount += 1;
 	}
 	else {
-	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given them to "+ _players[iCurrentPlayer].getName());
+	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "(s) and has given the card(s) to "+ _players[iCurrentPlayer].getName());
+	    System.out.println(_players[iCurrentPlayer].getName() + " gets to go again!");
 	}
 
 	
+	int newBooks = _players[iCurrentPlayer].checkForBooks();
+	_totalBooks += newBooks;
 	
-	
+	if (newBooks == 0){
+	    System.out.println (_players[iCurrentPlayer].getName() + " has gotten no new books");
+	}
+	else {
+	    System.out.println(_players[iCurrentPlayer].getName() + " has gotten " + newBooks + " new books\n" + _players[iCurrentPlayer].getName() + "'s " + _players[iCurrentPlayer].printNewBooks(newBooks));
+	}
 
-	
-	
-	
+	if ((_players[iCurrentPlayer].getHand()).size() == 0){
+	    int numCards = 0;
+	    if (_numPlayers <= 3) {numCards =7;}
+	    else {numCards = 5;}
+	    System.out.println(_players[iCurrentPlayer].getName() + " must draw " + numCards + "cards because they have run out of cards");
+	    _players[iCurrentPlayer].draw(deck, numCards); 
+	}
+	System.out.println("******************************");
+
+	System.out.println ("\n\n" + currentPlayer.getName() + "'s cards:");
+	System.out.println( _players[iCurrentPlayer].showHand());
+	System.out.println("\n================ END " + currentPlayer.getName().toUpperCase() + "'S TURN ==========================\n\n\n");
+
+
+
+
 	
     }//end takeTurn
 
@@ -198,14 +224,18 @@ public class GoFish{
   
     public static void main(String[] args){
 	try {
-	    GoFish game1 = setUp();
+	    Deck deck1 = new Deck();
+	    GoFish game1 = setUp(deck1);
 	    Player[] playerz = game1.getPlayers();
-	    game1.takeTurn();
+	    while (game1.getTotalBooks() < 13){
+		game1.takeTurn(deck1);
+	    }
 	    // System.out.println(((Human) playerz[0]).getName() + ":");
 	    //System.out.println(playerz[0].showHand());
 	}
 	catch(Exception exception){
 	    System.out.println(exception);
+	    // System.out.println
 	}
     }
 

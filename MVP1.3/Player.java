@@ -118,6 +118,9 @@ public abstract class Player {
 	     while (((p.getHand()).get(startPt)).getRank() == rank){
 		 addToHand(p.removeFromHand(startPt));
 		 frequency ++;
+		 if (startPt >= (p.getHand()).size()){
+		     break;
+		 }
 	     }
 	     return frequency;
 	 }
@@ -164,8 +167,7 @@ public abstract class Player {
      // POSTCOND:: returns a String of "new books: " + the rank of each new book
      // EX:
      ******************************/
-    public String printNewBooks(){
-	int newBooks = checkForBooks();
+    public String printNewBooks(int newBooks){
 	String retStr = "new books: ";
 	for (int c = _typesOfBooks.size()-newBooks; c < _typesOfBooks.size(); c++){
 	    if (_typesOfBooks.get(c) == Card.ACE){
@@ -204,7 +206,7 @@ public abstract class Player {
 	    player1.addToHand(ca);
 	}
 	System.out.println("JAKE: " + player1.showHand());	
-	System.out.println(player1.printNewBooks());
+	//System.out.println(player1.printNewBooks());
 	System.out.println("JAKE: " + player1.showHand());		
 	
 	/*
