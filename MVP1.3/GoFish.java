@@ -148,7 +148,7 @@ public class GoFish{
 	    System.out.println(_players[iplayerBeingAsked] + " says Go Fish!");
 	}
 	else {
-	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + Card.numToRank(rank) + "s and has given them to "+ _players[iCurrentPlayer].getName());
+	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + " " +  Card.numToRank(rank) + "s and has given them to "+ _players[iCurrentPlayer].getName());
 	}
 
 	
