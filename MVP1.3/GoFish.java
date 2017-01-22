@@ -124,10 +124,10 @@ public class GoFish{
 
 	while(rank < 1){
 	    if (rank == -1){
-		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling case INsensitive.");
+		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling (case INsensitive).");
 	    }
 	    else {
-		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling, case INsensitive.");
+		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive).");
 	    }
 	    rank = rankStrToInt(Keyboard.readString());
 	}
@@ -148,7 +148,7 @@ public class GoFish{
 	    System.out.println(_players[iplayerBeingAsked] + " says Go Fish!");
 	}
 	else {
-	    System.out.println("\n" + _players[iplayerBeingAsked] + " has " + cardsRecieved + Card.numToRank(rank) + "s and has given them to "+ _players[iCurrentPlayer]);
+	    System.out.println("\n" + _players[iplayerBeingAsked].getName() + " has " + cardsRecieved + Card.numToRank(rank) + "s and has given them to "+ _players[iCurrentPlayer].getName());
 	}
 
 	
