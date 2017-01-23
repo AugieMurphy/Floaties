@@ -12,15 +12,14 @@ public class Deck {
     
     /*********** Deck() ***********
 	   default constructor
-     // PRECOND::
-     // POSTCOND::
+     // POSTCOND:: a deck of type ArrayList<Card> containing all 52 cards in a standard deck
      // EX:
      ******************************/
     // Creates a deck of 52 cards
     public Deck(){
 	_deck = new ArrayList<Card>();
-	for (int x =1; x<14; x++){
-	    for (int y = 0; y < 4 ; y++){
+	for (int x =1; x<14; x++){ // 13 cards of each suit
+	    for (int y = 0; y < 4 ; y++){ // 4 suits
 		Card c = new Card( x,y ); //new card of each suit y of each rank x
 		_deck.add( c );
 	    }
@@ -46,33 +45,33 @@ public class Deck {
 
     
     
-    /********** methodName() **********
-		description...
-     // PRECOND::
-     // POSTCOND:: returns a String representation of hand
+    /********** shuffle() **********
+		shuffles the order of elements in the existing deck
+      //PRECOND:: there is a deck (_deck) containing an arraylist of cards
+     // POSTCOND:: shuffles the deck so that cards are randomly ordered
      // EX:
      ******************************/
     public void shuffle(){
-	for (int x = 0; x < _deck.size() ; x ++){ //if ur doing it this way you might as well use a for each loop for(Card c: _deck)
+	for (int x = 0; x < _deck.size() ; x ++){ // for all indices in _deck
 	    int randI1 = (int) (Math.random() *51);
-	    int randI2 = (int) (Math.random() *51); //you only need one, you already have x
-	    _deck.set(randI1, _deck.set(randI2,_deck.get(randI1)));
+	    int randI2 = (int) (Math.random() *51); 
+	    _deck.set(randI1, _deck.set(randI2,_deck.get(randI1))); // randomly swap three cards 
 	}
     }
 
-    /********** methodName() **********
+    /********** deal() **********
      // PRECOND:: numCards * numPlayers < size of deck, Player class has a draw(Deck,int) method 
-     // POSTCOND:: returns nothing and removes cards from the _deck and adds them to each player in the given array 7 cards if there are less than 4 players or 5 cards otherwise 
+     // POSTCOND:: each player in the array has 7 cards if numPlayers <= 3 or 5 cards otherwise in their hand, and these cards have been removed from the deck; the new hands are sorted by rank
      // EX:
      ******************************/
     public void deal( Player[] players ){
 	shuffle();
-	int numPlayers = players.length;
+	int numPlayers = players.length; 
 	int numCards = 0;
 	if( numPlayers <= 3 ){ numCards = 7; }
 	else{ numCards = 5; }
-	for (int x = 0; x < numPlayers * numCards; x ++){
-	    players[x%numPlayers].draw(this, 1);
+	for (int x = 0; x < numPlayers * numCards; x ++){ // keep dealing until all players have recieved numCards
+	    players[x%numPlayers].draw(this, 1); // give all players one card, then give them all two, etc...
 	}
 	
     } //end deal
@@ -84,7 +83,7 @@ public class Deck {
      // EX:
      ******************************/
     //removes the first Card from the _deck
-    public Card removeFromDeck(){ //should return a card because we can use this in other places
+    public Card removeFromDeck(){ 
 	return _deck.remove(0); //_deck.remove(d.size() - 1) is the best case scenario, might as well use it
 	//_cardsDealt += 1; // see CardsDealt
     }
