@@ -14,9 +14,9 @@ public abstract class Player {
     
     /********** Player() **********
 	   default constructor
-     // PRECOND::
-     // POSTCOND::
-     // EX:
+  
+  
+  
      ******************************/
     public Player(){ 
 	_hand = new Hand();
@@ -44,32 +44,24 @@ public abstract class Player {
     abstract public String getName();
     //=================================================
     
-    /* since player is never instantiated knowing their hand, this isn't necessary. Not a criticism, it's just that they have to be added to turn and then be dealt cards. Now we have draw and stuff to deal with other issues */
-    
-    // public Player(Hand hand){ // should take name param
-    //	this();
-    //	_hand = hand;
-    // }
 
 
     /*--------------------------------------------------
       ~~~~~~~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~~~~~~
-      These methods allow the Player to interact with their cards and other players once they have implemented getName()...(more info here)
+      These methods allow the Player to interact with their cards and other players once they have implemented getName()
       -------------------------------------------------*/
     
     /********** showHand() **********
-     // PRECOND:: Hand class has a toString() method
      // POSTCOND:: returns a String representation of hand
-     // EX:
+
      ******************************/
     public String showHand(){
 	return _hand.toString();
     }
 
     /********** addToHand() **********
-     // PRECOND::Hand class has an add(Card) method
-     // POSTCOND:: returns true if the method was successfully executed 
-     // EX:
+     // POSTCOND:: card c is added to hand such that hand remains sorted; if executed correctly, returns true
+
      ******************************/
     public boolean addToHand(Card c){
 	_hand.add(c);
@@ -77,9 +69,8 @@ public abstract class Player {
     }
 
     /********** removeFromHand() **********
-     // PRECOND:: Hand class had a remove(int) method that takes an index
-     // POSTCOND:: returns the Card that has just beend removed from the _hand
-     // EX:
+     // PRECOND:: int i is a valid index in _hand
+     // POSTCOND:: the card at index i in _hand has been removed; _hand is left justified; the Card that has just been removed is returned
      ******************************/
     public Card removeFromHand(int i){
 	return _hand.remove(i);
@@ -87,9 +78,8 @@ public abstract class Player {
 
     
     /********** draw() **********
-     // PRECOND:: numCards is less than the size of Deck d, d is shuffled,  Deck class has removeFromDeck() 
-     // POSTCOND:: does not return anything and decreases the number of Cards in Deck d by numCards and adds numCards from d to _hand
-     // EX:
+     // PRECOND:: numCards is less than the size of Deck d
+     // POSTCOND:: adds numCards cards to the player's hand, and removes those cards from the deck
      ******************************/
     public void draw(Deck d, int numCards) {
 	for (int x =0; x < numCards; x++){
@@ -100,59 +90,56 @@ public abstract class Player {
    
 
     /********** ask() **********
-     // PRECOND::  search(int) returns an index of the first card of a given rank found in a _hand; a player invoking the method is not the same as the Player given as the parameter  
-     // POSTCOND:: returns frequency of rank being asked for in the given Player p's _hand or -1 if a Player was ask for a rank they didn't thave themselves and adds the cards femoved from p's _hand to the player's hand, who is asking, 
-     // EX:
+     // PRECOND:: the  player invoking the method is not the same as the Player given as the parameter; this and player p both have hands which have been instantiated; rank is between 1 and 13, inclusive
+     // POSTCOND:: if the current player doesn't have a card of rank, returns -1; otherwise, all cards of rank are removed from player p's hand, and added to the current player's hand; the number of cards given is returned
      ******************************/
      public int ask(int rank, Player p){
-	 int myStartPt = this.search(rank);
-	 int startPt = p.search(rank);
-	 if (myStartPt == -1){
+	 int myStartPt = this.search(rank); // index of first instance of rank in hand
+	 int startPt = p.search(rank); // index of first instance of rank in hand
+	 if (myStartPt == -1){ // if current player doesn't have a card of rank
 	     return -1;
 	 }
 	 int frequency = 0;	 
-	 if (startPt == -1){
-	     return frequency; 
+	 if (startPt == -1){ // if player being asked doesn't have a card of rank 
+	     return frequency;  // return num of cards given (0)
 	 }
 	 else {
-	     while (((p.getHand()).get(startPt)).getRank() == rank){
-		 addToHand(p.removeFromHand(startPt));
-		 frequency ++;
-		 if (startPt >= (p.getHand()).size()){
+	     while (((p.getHand()).get(startPt)).getRank() == rank){ // while the card at index startPt is of the desired rank
+		 addToHand(p.removeFromHand(startPt)); // remove that card and add it to the current player's hand
+		 frequency ++; // increment the count of cards given
+		 if (startPt >= (p.getHand()).size()){ // if the start point is now no longer a valid index in the player being asked's hand
 		     break;
 		 }
 	     }
-	     return frequency;
+	     return frequency; // return the number of cards given
 	 }
     }
 
     /********** search() **********
-     // PRECOND:: size() implemented in Hand class
-     // POSTCOND:: returns the int that corresponds to the index of the first card fo a given rank found in _hand
-     // EX:
+     // PRECOND:: rank is between 1 and 13, inclusive
+     // POSTCOND:: returns the index of the first instance of a card with the given rank; if none exists, returns -1
      ******************************/
      public int search(int rank){
 	int start = -1;
 	for (int x = 0; x < _hand.size(); x++){
 	    if ((_hand.get(x)).getRank() == rank) {
 		start = x;
-		break;
+		break; // exits early if target is found
 	    }
 	}
 	return start;
     }
 
     /******* checkForBooks() *******
-     // PRECOND:: Card class has getRank(), Hand class has get(int) and size(). 
-     // POSTCOND:: removes from _hand Cards that are part of a new book, adds in _typesOfBooks the rank of any new books, increments _numBooks by number of newBooks, and returns number of newBooks
-     // EX:
+      // PRECOND:: _hand is sorted
+     // POSTCOND:: removes any complete books (four cards of the same rank) from the player's hand, adds the rank of that book to _typesOfBooks, increments _numBooks by number of newBooks, and returns number of newBooks
      ******************************/
      public int checkForBooks(){
 	int newBooks = 0;
-	for (int x = 0; x < _hand.size()-3; x++){
-	    if (_hand.get(x).getRank() == _hand.get(x+3).getRank()){
-		_typesOfBooks.add((_hand.get(x)).getRank());
-		for (int z = 0; z < 4; z++){
+	for (int x = 0; x < _hand.size()-3; x++){ 
+	    if (_hand.get(x).getRank() == _hand.get(x+3).getRank()){ // if the current card and the card three indices after it are the same
+		_typesOfBooks.add((_hand.get(x)).getRank()); // add the current card's rank to player's typesOfBooks
+		for (int z = 0; z < 4; z++){ // removes all 4 cards of that rank
 		    removeFromHand(x);
 		}
 		newBooks += 1;
@@ -163,9 +150,8 @@ public abstract class Player {
     }
 
     /********** printNewBooks() **********
-     // PRECOND:: checkForBooks() returns the most recently gained books, Card had a public final var for all the face cards
      // POSTCOND:: returns a String of "new books: " + the rank of each new book
-     // EX:
+
      ******************************/
     public String printNewBooks(int newBooks){
 	String retStr = "new books: ";
