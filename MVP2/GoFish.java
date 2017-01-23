@@ -105,7 +105,7 @@ public class GoFish{
 	Player playerBeingAsked = _players[iplayerBeingAsked];
 
 
-	int rank = getRankBeingAskedFor(playerBeingAsked);
+	int rank = getRankBeingAskedFor(currentPlayer, playerBeingAsked);
 
 	handleRecievingCards(currentPlayer, playerBeingAsked, rank, deck);
 	
@@ -175,17 +175,26 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 
 }
 
-    public int getRankBeingAskedFor(Player playerBeingAsked){
+    public int getRankBeingAskedFor(Player currentPlayer, Player playerBeingAsked){
 	System.out.println("\nWhat rank of cards would you like to ask " + playerBeingAsked.getName() + " for? For any specifications about ranks type 'specs'");
 
 
 	int rank = rankStrToInt(Keyboard.readString());
 
 
-	while(rank < 1){
+	while(rank < 1 || currentPlayer.search(rank) == -1){
 	    if (rank == -1){
 		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling (case INsensitive).");
 	    }
+
+	    else if (rank == 0){
+		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive)."); }
+		
+	    else if (currentPlayer.search(rank) == -1){
+		    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
+		}
+	    
+		    
 	    else {
 		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive).");
 	    }
@@ -198,13 +207,6 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 
     public void handleRecievingCards(Player currentPlayer, Player playerBeingAsked, int rank, Deck deck){
 	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
-
-
-	while (cardsRecieved < 0) {
-	    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
-	    rank = rankStrToInt(Keyboard.readString());
-	    cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
-	}
 
 	
 	System.out.println("\n******************************");
