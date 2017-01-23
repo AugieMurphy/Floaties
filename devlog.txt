@@ -13,24 +13,31 @@ GO FISH!
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -Resolved issue with user input where the entire game must be restarted when an exception is thrown.
--Resolved issue with Player and its subclasses which required a large amount of typecasting.
+-Resolved the issue of switching between from player to player for the next turn with the _turncount instance var in the driver
+-Resolved issue with Player and its subclass Human, requiring  which required a large amount of typecasting whenever getName() was required.
+-Resolved the issue of having a pool to draw from during the game by taking away cardss directly from the deck
+-Resolved the issue of making add() and search() for a particular rank in Player by making an OrderedCards wrapper class that would ensure that the hand of a player is always ordered by rank
 
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--the Deck display is unsatisfactory 
-
+-The Deck display is unsatisfactory 
+-Never implemented AI that would work for single player
+-Never corrected the spelling of receive 
+-Never found a way to ensure that a player won't be able to look at another player's hand
+-Never slowed down the printing to make output during the game more readable
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
+-
+
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--Changed functionality of the driver file; it now uses an ArrayList of Players to keep track of turns (the turns are the indexes ). 
--Changed the concept for OrderedCards so that it now acts as a wrapper class for Hand.
+-Changed functionality of the driver file; it now uses an array of Players to keep track of turns (the turns are the indexes ). 
+-Changed Deck so that it doesn't use a seperate instance var _cardsDealt to create pool of cards to draw from during the game and instead just removes from the deck.
 -Changed class Player to be abstract, and to contain abstract method getName().
--Changed functionality of the Deck and Hand classes in order to take advantage of the fact that all Hands are sorted.
+-Changed functionality of the Player and Hand classes, namely ask() and search() in Player, in order to take advantage of the fact that all Hands are sorted.
 
 
 LESSONS LEARNED
