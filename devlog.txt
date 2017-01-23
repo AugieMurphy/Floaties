@@ -100,7 +100,7 @@ All: MVP!!!
 --------------------------------------------------------------
 Augie :: 
 Gabi  :: Fixed OrderedCards method addBinary(), which wasn't sorting cards correctly. Created and began writing method takeTurn() in the driver file, which handles the complete turn of a single user. 
-Sasha :: 
+Sasha :: Made the _deck in deck.java lose cards when cards are dealt, making _cardsDealt instance var obsolete. 
 ==============================================================
 
 
@@ -113,18 +113,32 @@ Sasha :: Added some comments to all classes. Changed main in GoFish so that ever
 
 
 
-2017-17-17
+2017-01-17
 --------------------------------------------------------------
 Augie :: Created GoFish directory. Wrote detailed main bodies for all classes and corrected methods that weren't doing what we thought they were. Pushed README.md, rewrote Comparable() so it was functional, worked on displaying cards in the terminal, went through every method and class to ensure there were no naming issues or methods in the wrong classes. Rewrote methods in all(not all methods, just some but went through all classes) classes for clarity and efficiency. It could've been very buggy later without this!!!
 Gabi:: Continued working on takeTurn().
-Sasha::
+Sasha:: Worked on takeTurn for error handling purposes, making sure that if a player picks an invalid player to ask for cards the driver will ask the user to try again.
+==============================================================
+
+2017-01-19
+--------------------------------------------------------------
+Augie :: 
+Gabi:: 
+Sasha:: Integrated Augie's idea of ask so that ask() works based of the fact that _hand is ordered. Ask now returns a frequency of a given rank found in a given player's hand and search() return the index of the first card of a given ranke found in the _hand of a player. In Player class, added checkForBooks() to be used at the end of a player's turn to check if they have any newbooks in their hand, incrmenting the _newBooks instance var and returning only the newBooks. 
+==============================================================
+
+2017-01-20
+--------------------------------------------------------------
+Augie :: 
+Gabi:: 
+Sasha:: Added _typeOfBooks instance var to keep track of the rank of books a player has. Added printNewBooks() method which returns a string of the most recently gained types of books. 
 ==============================================================
 
 2017-1-22
 --------------------------------------------------------------
 Augie :: 
 Gabi:: Continued working on takeTurn().
-Sasha::
+Sasha:: Addded mechanism for asking players for cards, checkingforbooks, and displaying appropriate messages in the takeTurn of the GoFish driver. Added in the ask() method of the Player class an if statement to control ensure that -1 will be returned as the frquency if the player is asking for a card they themselves do not have
 ==============================================================
 
 
