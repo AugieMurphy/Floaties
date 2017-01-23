@@ -64,12 +64,12 @@ III. OUTLINING THE CODE-ING-ISH STUFF
      A Deck class that holds an ArrayList of 52 Cards and can shuffle and deal.
 
 IV.  Launch Instructions 
-	```
+
 	$cd Floaties
 	
 	$javac Woo.java
 	
 	$java Woo
-	```
+
 
 
