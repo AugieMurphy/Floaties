@@ -79,20 +79,19 @@ public class GoFish{
 	    }
 	    
 	    game = new GoFish(numPlayerz);
-	    for (int x =0; x < numPlayerz; x++){
-		System.out.println("\nType name of player" + x);
+	    for (int x =0; x < numPlayerz; x++){ // go through and assign every player a name per user input
+		System.out.println("\nType name of player " + x);
 		String name = Keyboard.readWord();
 		game.setPlayers(x , new Human(name));
 	    }
 	    System.out.println("\nAlright, let's deal the cards!");
-	    game.dealTheCards(deck);
+	    game.dealTheCards(deck); // handles shuffling the deck, and gives each player the correct number of cards... see deck class for details
 	    //return game;   
 	}
 	return game;
 	
     }//end setUp
  
-    // precon: the player taking the current turn is human.... sort out AI turns later!!
     public void takeTurn(Deck deck){
 	// handle intial display
 	Player currentPlayer =  _players[_turnCount % _numPlayers];
@@ -109,7 +108,7 @@ public class GoFish{
 
 	handleRecievingCards(currentPlayer, playerBeingAsked, rank, deck);
 	
-	int newBooks = currentPlayer.checkForBooks();
+	int newBooks = currentPlayer.checkForBooks(); 
 	_totalBooks += newBooks;
 	
 	if (newBooks == 0){
@@ -119,7 +118,7 @@ public class GoFish{
 	    System.out.println(currentPlayer.getName() + " has gotten " + newBooks + " new books\n" + currentPlayer.getName() + "'s " + currentPlayer.printNewBooks(newBooks));
 	}
 
-	if ((currentPlayer.getHand()).size() == 0){
+	if ((currentPlayer.getHand()).size() == 0){ // if the current player has no cards left
 	    int numCards = 0;
 	    if (_numPlayers <= 3) {numCards =7;}
 	    else {numCards = 5;}
@@ -134,7 +133,7 @@ public class GoFish{
 	System.out.println("******************************");
 
 	System.out.println ("\n\n" + currentPlayer.getName() + "'s cards:");
-	System.out.println( currentPlayer.showHand());
+	System.out.println( currentPlayer.showHand()); // displays current hand
 	System.out.println("\n================ END " + currentPlayer.getName().toUpperCase() + "'S TURN ==========================\n\n\n");
 
 
@@ -154,18 +153,18 @@ public class GoFish{
     public int getPlayerBeingAsked(int iCurrentPlayer){
 
 System.out.println("\nWho would you like to ask for a card? Please type their corresponding number in the list.");
-	for (int i = 0; i < _numPlayers; i++){
+for (int i = 0; i < _numPlayers; i++){ // prints a numbered list of options
 	    System.out.println( i + ": " + _players[i].getName());
 	}
 	System.out.println();
 	
 	int iplayerBeingAsked = Keyboard.readInt();
 	while (iplayerBeingAsked < 0 || iplayerBeingAsked > (_numPlayers - 1) || iplayerBeingAsked == iCurrentPlayer){
-	    if (iplayerBeingAsked == iCurrentPlayer) {
+	    if (iplayerBeingAsked == iCurrentPlayer) { // if you pick yourself
 		System.out.println("That's you! Share the love, ask someone else!");
 		iplayerBeingAsked = Keyboard.readInt();
 	    }
-	    else {
+	    else { // if you pick a nonexistent player
 		System.out.println("Index out of bounds: please pick an existing player");
 		iplayerBeingAsked = Keyboard.readInt();
 	    }
@@ -182,31 +181,31 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 	int rank = rankStrToInt(Keyboard.readString());
 
 
-	while(rank < 1 || currentPlayer.search(rank) == -1){
-	    if (rank == -1){
+	while(rank < 1 || currentPlayer.search(rank) == -1){ // while the rank is invalid or the player does not have a card of that rank
+	    if (rank == -1){ // if the rank does not exist
 		System.out.println("\nInvalid rank please try again: ranks are from 2-10 inclusive as well as 'jacks' , 'queens', 'kings' , and 'aces' with that spelling (case INsensitive).");
 	    }
 
-	    else if (rank == 0){
+	    else if (rank == 0){ // if the user typed "specs"
 		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive)."); }
 		
-	    else if (currentPlayer.search(rank) == -1){
+	    else if (currentPlayer.search(rank) == -1){ // if the player asked for a card they do not have
 		    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
 		}
 	    
 		    
-	    else {
+	    else { // any other misc cases
 		System.out.println("\nRanks are from 2-10 also including Jacks, Queens, Kings, and Aces. Enter one of these options. Be sure to type 'jacks' , 'queens' , 'kings', or 'aces' with that spelling (case INsensitive).");
 	    }
 	    rank = rankStrToInt(Keyboard.readString());
 	}
 
 	
-	return rank;
+	return rank; // returns rank once it is a valid input
 }
 
     public void handleRecievingCards(Player currentPlayer, Player playerBeingAsked, int rank, Deck deck){
-	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
+	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked); // ask returns the number of cards received
 
 	
 	System.out.println("\n******************************");
@@ -227,12 +226,12 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 
     public String scoreBoard () {
 	String retStr = "~~~~~~~~~ Score Board ~~~~~~~~~~~\n";
-	for (Player p :_players){
+	for (Player p :_players){ // for all players
 	    retStr += p.getName() + "'s books: ";
-	    if (p.getNumBooks() != 0){
+	    if (p.getNumBooks() != 0){ // if they have books, go through and print them all
 		retStr += (p.printNewBooks(p.getNumBooks())).substring(11) + "\n";
 	    }
-	    else {
+	    else { // otherwise, say they have none
 		retStr += "no books\n";
 	    }
 	}
@@ -240,32 +239,32 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 	return retStr;
     }
     
-    public int rankStrToInt(String rank){
+    public int rankStrToInt(String rank){ // handles user input and turns it into a valid input for rank
 	try {
-	    if ((rank.toLowerCase()).equals("aces")){
-		return Card.ACE;
+	    if ((rank.toLowerCase()).equals("aces")){ 
+		return Card.ACE; // final var defined in card class -- equal to 1
 	    }
 	    else if ((rank.toLowerCase()).equals("kings")){
-		return Card.KING;
+		return Card.KING; // equal to 13
 	    }
 	    else if ((rank.toLowerCase()).equals("queens")){
-		return Card.QUEEN;
+		return Card.QUEEN; // equal to 12
 	    }
 	    else if ((rank.toLowerCase()).equals("jacks")){
-		return Card.JACK;
+		return Card.JACK; // equal to 11
 	    }
 	    else if ((rank.toLowerCase()).equals("specs")){
-       		return 0;
+       		return 0; // the equivalent of a "help" option
 	    }
-	    else if (Integer.parseInt(rank) > 1 && Integer.parseInt(rank) < 13)  {
-		return Integer.parseInt(rank);
+	    else if (Integer.parseInt(rank) > 1 && Integer.parseInt(rank) <= 10)  {
+		return Integer.parseInt(rank); // if the input is between 1 and 10, rank is that rank
 	    }
 	  
-	    else {
+	    else { // if the input is otherwise invalid
 		return -1;
 	    }
 	}
-	catch (Exception exception){
+	catch (Exception exception){ // if the user does something else wacky
 	    return -1;
 	}
 	
