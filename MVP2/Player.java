@@ -83,6 +83,9 @@ public abstract class Player {
      ******************************/
     public void draw(Deck d, int numCards) {
 	for (int x =0; x < numCards; x++){
+	    if (x >= d.getDeck().size()){
+		break;
+	    }
 	    addToHand(d.removeFromDeck());
 	}	
     }

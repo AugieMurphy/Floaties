@@ -26,6 +26,16 @@ public class Deck {
 	}
     }
 
+    public Deck(int num){
+	_deck = new ArrayList<Card>();
+	for (int x =1; x<4; x++){ // 13 cards of each suit
+	    for (int y = 0; y < 4 ; y++){ // 4 suits
+		Card c = new Card( x,y ); //new card of each suit y of each rank x
+		_deck.add( c );
+	    }
+	}
+    }
+
    
     //ACCESSORS ============================================
     public int getCardsDealt() {

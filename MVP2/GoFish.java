@@ -126,6 +126,11 @@ public class GoFish{
 	    System.out.println(currentPlayer.getName() + " must draw " + numCards + "cards because they have run out of cards");
 	    currentPlayer.draw(deck, numCards); 
 	}
+
+	if (deck.getDeck().size() == 0){
+	    System.out.println("The deck is out of cards! It's the home stretch!");
+	}
+	
 	System.out.println("******************************");
 
 	System.out.println ("\n\n" + currentPlayer.getName() + "'s cards:");
@@ -186,26 +191,27 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 	    }
 	    rank = rankStrToInt(Keyboard.readString());
 	}
+
+	
 	return rank;
 }
 
     public void handleRecievingCards(Player currentPlayer, Player playerBeingAsked, int rank, Deck deck){
-       	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
+	int cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
 
 
-
-	
 	while (cardsRecieved < 0) {
 	    System.out.println("\n" + currentPlayer.getName() + ", you can only ask for a rank of cards that you currently have in your hand. Please enter a different rank");
 	    rank = rankStrToInt(Keyboard.readString());
 	    cardsRecieved = currentPlayer.ask(rank, playerBeingAsked);
 	}
 
+	
 	System.out.println("\n******************************");
 	System.out.println( currentPlayer.getName() + " asked " + playerBeingAsked.getName() + " for " + Card.numToRank(rank) + "s.");
 
 	if (cardsRecieved == 0){
-	    System.out.println(playerBeingAsked.getName() + " says Go Fish!");
+	    System.out.println(playerBeingAsked.getName() + " says Go Fish!\n" + currentPlayer.getName() + " draws 1 card");
 	    currentPlayer.draw(deck, 1);
 	    _turnCount += 1;
 	}
@@ -217,6 +223,21 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 
 	}      
 
+    public String scoreBoard () {
+	String retStr = "~~~~~~~~~ Score Board ~~~~~~~~~~~\n";
+	for (Player p :_players){
+	    retStr += p.getName() + "'s books: ";
+	    if (p.getNumBooks() != 0){
+		retStr += (p.printNewBooks(p.getNumBooks())).substring(11) + "\n";
+	    }
+	    else {
+		retStr += "no books\n";
+	    }
+	}
+	retStr += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+	return retStr;
+    }
+    
     public int rankStrToInt(String rank){
 	try {
 	    if ((rank.toLowerCase()).equals("aces")){
@@ -247,7 +268,7 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 	}
 	
     }
-  
+
     public static void main(String[] args){
 	try {
 	    Deck deck1 = new Deck();
@@ -255,6 +276,7 @@ System.out.println("\nWho would you like to ask for a card? Please type their co
 	    Player[] playerz = game1.getPlayers();
 	    while (game1.getTotalBooks() < 13){
 		game1.takeTurn(deck1);
+		System.out.println(game1.scoreBoard());
 	    }
 	    // System.out.println(((Human) playerz[0]).getName() + ":");
 	    //System.out.println(playerz[0].showHand());
