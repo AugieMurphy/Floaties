@@ -53,41 +53,27 @@ public class GoFish{
 	System.out.println( "READY TO PLAY GOFISH!?!?!?!!");
 	System.out.println( "OF COURSE YOU ARE! YOU WERE BORN READY");
 
-	String introMsg = "\nType 1 or 2:\n1. Single Player NOT READY YET sad face\n2. Multiplayer\n";
-	System.out.print(introMsg);
-	
-	int option = Keyboard.readInt();
-	while (option >2 || option <1){
-	    System.out.println("Invalid option. Try again:\n" +  introMsg);
-	    option = Keyboard.readInt();
-	}
-	
-	if (option == 1) {
-	    System.out.println("I'm sorry this part of the game isnt ready yet");
-	    game = new GoFish();
-	}
-	
-	else {
-	    System.out.println( "\nHow many players? Can be from 2 to 5 inclusive.");
+
+	System.out.println( "\nHow many players? Can be from 2 to 5 inclusive.");
 
 
-	    int numPlayerz = Keyboard.readInt();
+	int numPlayerz = Keyboard.readInt();
 	    
-	    while (numPlayerz > 5 || numPlayerz < 2){
-		System.out.print("\nInvalid num players. Must be from 2 to 5 inclusive. Try again:\n");
-		numPlayerz = Keyboard.readInt();
-	    }
-	    
-	    game = new GoFish(numPlayerz);
-	    for (int x =0; x < numPlayerz; x++){ // go through and assign every player a name per user input
-		System.out.println("\nType name of player " + x);
-		String name = Keyboard.readWord();
-		game.setPlayers(x , new Human(name));
-	    }
-	    System.out.println("\nAlright, let's deal the cards!");
-	    game.dealTheCards(deck); // handles shuffling the deck, and gives each player the correct number of cards... see deck class for details
-	    //return game;   
+	while (numPlayerz > 5 || numPlayerz < 2){
+	    System.out.print("\nInvalid num players. Must be from 2 to 5 inclusive. Try again:\n");
+	    numPlayerz = Keyboard.readInt();
 	}
+	    
+	game = new GoFish(numPlayerz);
+	for (int x =0; x < numPlayerz; x++){ // go through and assign every player a name per user input
+	    System.out.println("\nType name of player " + x);
+	    String name = Keyboard.readWord();
+	    game.setPlayers(x , new Human(name));
+	}
+	System.out.println("\nAlright, let's deal the cards!");
+	game.dealTheCards(deck); // handles shuffling the deck, and gives each player the correct number of cards... see deck class for details
+	//return game;   
+	
 	return game;
 	
     }//end setUp
