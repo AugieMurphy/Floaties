@@ -65,7 +65,9 @@ III. OUTLINING THE CODE-ING-ISH STUFF
 
 IV.  Launch Instructions 
 	```$cd Floaties
+	
 	$javac Woo.java
+	
 	$java Woo
 	```
 
