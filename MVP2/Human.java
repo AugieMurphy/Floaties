@@ -6,11 +6,12 @@ public class Human extends Player {
     
     /********** Human() ***********
      ******************************/
-    public Human() { // constructor
+    public Human() { // default constructor
     	super();	
     }
 
     /***** Human(String name) *****
+	   overloaded constructor
      ******************************/
     public Human(String name){
 	this();

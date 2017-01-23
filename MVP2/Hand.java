@@ -1,5 +1,6 @@
-public class Hand{
+public class Hand{ // wrapper class for the OrderedCards class
 
+    
     //instance vars
     private OrderedCards _hand;
 
