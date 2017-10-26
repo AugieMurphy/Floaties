@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 public abstract class Player {
     
     // instance vars
@@ -14,9 +15,6 @@ public abstract class Player {
     
     /********** Player() **********
 	   default constructor
-  
-  
-  
      ******************************/
     public Player(){ 
 	_hand = new Hand();

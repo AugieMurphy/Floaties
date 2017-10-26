@@ -274,12 +274,9 @@ for (int i = 0; i < _numPlayers; i++){ // prints a numbered list of options
 		}
 	    }
 	    System.out.println(maxPlayer.getName() + " won!");
-	    // System.out.println(((Human) playerz[0]).getName() + ":");
-	    //System.out.println(playerz[0].showHand());
 	}
 	catch(Exception exception){
 	    System.out.println(exception);
-	    // System.out.println
 	}
     }
 

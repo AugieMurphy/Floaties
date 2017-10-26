@@ -1,4 +1,4 @@
-﻿Floaties
+Floaties
 Augie Murphy
 Gabi Newman
 Sasha Fomina
@@ -29,7 +29,7 @@ UNRESOLVED ISSUES
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--
+-using % is a cool way to iterate through an array multiple times without getting a null pointer exception
 
 
 MID-DEVELOPMENT DESIGN CHANGES
@@ -105,7 +105,6 @@ All: MVP!!!
 
 2017-01-13
 --------------------------------------------------------------
-Augie :: 
 Gabi  :: Fixed OrderedCards method addBinary(), which wasn't sorting cards correctly. Created and began writing method takeTurn() in the driver file, which handles the complete turn of a single user. 
 Sasha :: Made the _deck in deck.java lose cards when cards are dealt, making _cardsDealt instance var obsolete. 
 ==============================================================
@@ -113,7 +112,7 @@ Sasha :: Made the _deck in deck.java lose cards when cards are dealt, making _ca
 
 2017-01-14
 --------------------------------------------------------------
-Augie :: 
+Augie :: created and ask()!!! It is super concise :), it adds for every card removed from the other player. Remove() only removes one card— the first card of that rank.
 Gabi  :: Modified class Player to be abstract, and contain abstract method getName(). Continued work on takeTurn() -- it now displays a numbered list of users to ask for cards. Next step is to handle the actual asking.
 Sasha :: Added some comments to all classes. Changed main in GoFish so that everything to setup the game, i.e. multiplayer or single, name of each player, and dealing the cards to each player, is in a method GoFish setup() as it creates and returns a new game. The main method now just calls setUp().
 ==============================================================
@@ -129,21 +128,19 @@ Sasha:: Worked on takeTurn for error handling purposes, making sure that if a pl
 
 2017-01-19
 --------------------------------------------------------------
-Augie :: 
-Gabi:: 
-Sasha:: Integrated Augie's idea of ask so that ask() works based of the fact that _hand is ordered. Ask now returns a frequency of a given rank found in a given player's hand and search() return the index of the first card of a given ranke found in the _hand of a player. In Player class, added checkForBooks() to be used at the end of a player's turn to check if they have any newbooks in their hand, incrmenting the _newBooks instance var and returning only the newBooks. 
+Augie :: search() returns boolean true or false. 
+Sasha:: search() now returns the index of the first card of a given rank found in the _hand of a player. In Player class, added checkForBooks() to be used at the end of a player's turn to check if they have any newbooks in their hand, incrmenting the _newBooks instance var and returning only the newBooks. 
 ==============================================================
 
 2017-01-20
 --------------------------------------------------------------
-Augie :: 
-Gabi:: 
+Augie :: Worked on single player option which was not included bc no time to test properly.
 Sasha:: Added _typeOfBooks instance var to keep track of the rank of books a player has. Added printNewBooks() method which returns a string of the most recently gained types of books. 
 ==============================================================
 
 2017-1-22
 --------------------------------------------------------------
-Augie :: 
+Augie :: Worked on the driver, was on the train so I couldn’t push, so I worked and sent screenshots. I also did some commenting, etc…
 Gabi:: Continued working on takeTurn().
 Sasha:: Addded mechanism for asking players for cards, checkingforbooks, and displaying appropriate messages in the takeTurn of the GoFish driver. Added in the ask() method of the Player class an if statement to control ensure that -1 will be returned as the frquency if the player is asking for a card they themselves do not have
 ==============================================================
