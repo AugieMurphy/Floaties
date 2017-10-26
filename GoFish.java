@@ -108,7 +108,7 @@ public class GoFish{
 	    int numCards = 0;
 	    if (_numPlayers <= 3) {numCards =7;}
 	    else {numCards = 5;}
-	    System.out.println(currentPlayer.getName() + " must draw " + numCards + "cards because they have run out of cards");
+	    System.out.println(currentPlayer.getName() + " must draw " + numCards + " cards because they have run out of cards");
 	    currentPlayer.draw(deck, numCards); 
 	}
 

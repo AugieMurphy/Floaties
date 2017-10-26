@@ -82,12 +82,11 @@ public abstract class Player {
      // POSTCOND:: adds numCards cards to the player's hand, and removes those cards from the deck
      ******************************/
     public void draw(Deck d, int numCards) {
-	for (int x =0; x < numCards; x++){
-	    if (x >= d.getDeck().size()){
-		break;
-	    }
+	int x = 0;
+	while (x<numCards && d.getDeck().size() > 0){
 	    addToHand(d.removeFromDeck());
-	}	
+	    x+=1;
+	}
     }
 
    

@@ -10,6 +10,15 @@ public class Woo {
 		game1.takeTurn(deck1);
 		System.out.println(game1.scoreBoard());
 	    }
+	    int maxBooks =playerz[0].getNumBooks();
+	    Player maxPlayer = playerz[0];
+	    for (Player p : playerz){
+		if (p.getNumBooks() > maxBooks){
+		    maxBooks = p.getNumBooks();
+		    maxPlayer = p;
+		}
+	    }
+	    System.out.println(maxPlayer.getName() + " won!");
 	    // System.out.println(((Human) playerz[0]).getName() + ":");
 	    //System.out.println(playerz[0].showHand());
 	}
